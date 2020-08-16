@@ -1,0 +1,574 @@
+/* 课程介绍样式 */
+/* 科目盒子 */
+
+.about_h2 {
+    text-align: center;
+    font-size: 26px;
+    color: #000000;
+    margin-top: 80px;
+    margin-bottom: 5px;
+}
+
+.about_p {
+    text-align: center;
+    color: #9C9898;
+    text-transform: uppercase;
+    margin-top: 1px;
+    font-size: 16px;
+}
+
+
+.about_line {
+    height: 20px;
+    margin-block-start: 0.5em;
+    margin-block-end: 1em;
+    background: url(../images/about_line.jpg) no-repeat;
+    background-position-x: center;
+    background-position-y: center;
+    background-size: initial;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: initial;
+}
+
+.row_course {
+    width: 1400px;
+    height: 450px;
+    margin: auto;
+}
+
+.contentbox {
+    margin-top: 70px;
+}
+
+ul,
+li,
+h3 {
+    padding: 0;
+    margin: auto;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+.content {
+    width: 1300px;
+    height: 400px;
+    padding: 10px;
+    margin: auto auto;
+}
+
+
+.con {
+    width: 230px;
+    height: 198px;
+    float: left;
+    margin-left: 10px;
+    margin-right: 15px;
+    margin-bottom: 15px;
+    position: relative;
+    cursor: default;
+}
+
+.con img {
+    width: 220px;
+    height: 200px;
+}
+
+.txt {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 220px;
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.6);
+    cursor: pointer
+}
+
+.txt p {
+    font-size: 14px;
+    line-height: 20px;
+    padding: 10px;
+    color: #fefefe;
+    display: none;
+    margin-block-start: 0;
+}
+
+.con:hover p {
+    display: block;
+    cursor: pointer
+}
+
+.txt h3 {
+    padding-top: 0;
+    margin: 0;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    cursor: pointer
+}
+
+/* 定制一对一 */
+.custom {
+    width: 100%;
+    height: 900px;
+    margin: auto;
+}
+
+.row_custom {
+    width: 100%;
+    height: 900px;
+    background: url(../images/介绍_02.jpg);
+    background-position: center;
+    margin: auto;
+    margin-top: 80px;
+}
+
+.custom-gc {
+    margin: auto;
+    background: url(../images/课程介绍_0201.png);
+    background-size: 80%;
+    background-position: 50% 48%;
+    background-repeat: no-repeat;
+    width: 1600px;
+}
+
+
+.custom-top {
+    width: 1300px;
+    height: 200px;
+    margin: auto;
+    margin-top: 40px;
+    position: relative;
+}
+
+.custom-top-2 {
+    width: 250px;
+    height: 150px;
+    position: absolute;
+    left: 24.5%;
+}
+
+.custom-top-4 {
+    width: 250px;
+    height: 150px;
+    position: absolute;
+    left: 53%;
+}
+
+.custom-top-6 {
+    width: 250px;
+    height: 150px;
+    float: left;
+    position: absolute;
+    left: 82%;
+}
+
+
+.custom-button {
+    width: 1400px;
+    height: 150px;
+    margin-top: 10px;
+    margin-bottom: 50px;
+    position: relative;
+}
+
+.custom-top-1 {
+    width: 250px;
+    height: 150px;
+    position: absolute;
+    left: 19.5%;
+}
+
+.custom-top-3 {
+    width: 250px;
+    height: 150px;
+    position: absolute;
+    left: 46.5%;
+}
+
+.custom-top-5 {
+    width: 250px;
+    height: 150px;
+    position: absolute;
+    left: 73.1%;
+}
+
+.custom-img {
+    width: 120px;
+    height: 120px;
+    float: left;
+    background-size: 100%;
+}
+
+.custom-img img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.custom-p {
+    margin-block-start: 0;
+    margin-block-end: 0;
+    font-size: 12px;
+    color: #666666;
+}
+
+.custom-h2 {
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-top: 45px;
+}
+
+
+.custom-data {
+    width: 1000px;
+    height: 240px;
+    margin-top: 20px;
+    margin: auto;
+}
+
+.custom-data-l {
+    width: 450px;
+    height: 280px;
+    float: left;
+    background: #8d96ff;
+}
+
+.custom-data-l-img {
+    width: 380px;
+    height: 240px;
+    margin-top: 20px;
+    margin-left: -60px;
+    float: left;
+    position: relative;
+}
+
+.custom-data-l-img img {
+    width: 100%;
+    height: 100%;
+}
+
+.custom-data-l-p {
+    width: 100px;
+    height: 200px;
+    text-align: center;
+    margin-top: 35px;
+    margin-right: 20px;
+    float: right;
+    line-height: 3.2em;
+    color: #FEFEFE;
+}
+
+.custom-data-r {
+    width: 450px;
+    height: 280px;
+    float: right;
+    margin-right: 20px;
+    background: #8d96ff;
+}
+
+.custom-data-r-img {
+    width: 380px;
+    height: 240px;
+    margin-top: 20px;
+    margin-right: -60px;
+    float: right;
+    position: relative;
+}
+
+.custom-data-r-img img {
+    width: 100%;
+    height: 100%;
+}
+
+.custom-data-r-p {
+    width: 100px;
+    height: 200px;
+    margin-top: 35px;
+    margin-left: 20px;
+    text-align: center;
+    float: left;
+    line-height: 3.2em;
+    color: #FEFEFE;
+}
+
+
+/* 趣味课堂 */
+.interest {
+    width: 1400px;
+    height: 500px;
+    margin: auto;
+}
+
+.row_interest {
+    width: 1400px;
+    height: 600px;
+    margin: auto;
+
+}
+
+.interest-content {
+    width: 1400px;
+    height: 400px;
+}
+
+.interest-content-1 {
+    width: 300px;
+    height: 380px;
+    float: left;
+
+    margin-left: 200px;
+    margin-top: 10px;
+}
+
+.interest-content-2 {
+    width: 300px;
+    height: 380px;
+
+    margin-left: 50px;
+    margin-top: 10px;
+    float: left;
+
+}
+
+.interest-content-3 {
+    width: 300px;
+    height: 380px;
+    float: left;
+    margin-left: 50px;
+    margin-top: 10px;
+
+}
+
+.interest-content-img {
+    width: 283px;
+    height: 190px;
+}
+
+.interest-content-t {
+    margin-top: 10px;
+}
+
+.interest-content-img img {
+    width: 100%;
+    height: 100%;
+}
+
+.student {
+    position: relative;
+    color: #9FA6FD;
+    font-size: 26px;
+    margin-bottom: 20px;
+    text-align: center;
+    margin-right: 15px;
+}
+
+.every_class {
+    width: 283px;
+    height: 361px;
+    float: left;
+    box-shadow: 1px 1px 5px 2px #ccc;
+}
+
+.threFaths {
+    width: 1400px;
+    height: 475px;
+    padding: 15px 250px 10px 250px;
+    overflow: hidden;
+    position: relative;
+    z-index: 50;
+    float: right;
+}
+
+.swiper-containerz .swiper-slide {
+    box-shadow: 0 0 0 0;
+}
+
+.jt {
+    width: 70px;
+    height: 30px;
+    margin: auto;
+    /*overflow: hidden;*/
+}
+
+.toRights {
+    width: 30px;
+    right: -50px;
+    float: right;
+}
+
+.toLefts img, .toRights img {
+    width: 30px;
+    height: 30px;
+}
+
+.toLefts img:hover, .toRights img:hover {
+    border-radius: 50%;
+    box-shadow: 1px 1px 3px 2px #ccc;
+    background-color: #fff;
+    transform: scale(1.4);
+    cursor: pointer
+}
+
+
+.toLefts {
+    width: 30px;
+    left: -50px;
+    float: left;
+}
+
+#qwkt img {
+    height: 100%;
+}
+
+/*动态*/
+.right-j {
+    width: 15px;
+    height: 20px;
+    margin-top: 6px;
+    float: left;
+    background: url(../images/right_j.png);
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.interest-content-h3 {
+    text-align: left;
+    margin-block-start: 0.2em;
+    margin-block-end: 0rem;
+    color: #000000;
+}
+
+.interest-content-text {
+    font-size: 14px;
+    color: #686868;
+    height: 130px;
+    margin: 10px 20px 0 20px;
+    overflow: hidden;
+}
+
+
+/* 六部教学法 */
+.row_teaching_method {
+    height: 830px;
+    margin: auto;
+    background: #eeeeee;
+
+}
+
+.teaching-method-bg {
+    overflow: hidden;
+    width: 800px;
+    height: 800px;
+    margin: auto;
+    background: url(../images/lbjxf.png);
+    background-repeat: no-repeat;
+    background-size: 90%;
+    background-position: 35px 0;
+}
+
+.teaching-method-1 {
+    width: 400px;
+    height: 100px;
+
+}
+
+.teaching-method-line1 {
+    width: 500px;
+    height: 90px;
+    margin: auto;
+    margin-top: 100px;
+}
+
+.teaching-method-line2 {
+    width: 620px;
+    height: 90px;
+    margin: auto;
+    margin-top: 110px;
+}
+
+.teaching-method-line3 {
+    width: 500px;
+    height: 90px;
+    margin: auto;
+    margin-top: 100px;
+}
+
+.teaching-method-text1 {
+    width: 200px;
+    height: 90px;
+
+    margin-left: 30px;
+    float: left;
+}
+
+.teaching-method-text2 {
+    width: 200px;
+    height: 90px;
+
+    margin-right: 40px;
+    float: right;
+}
+
+.teaching-method-text6 {
+    width: 150px;
+    height: 90px;
+
+    margin-left: -10px;
+    float: left;
+}
+
+.teaching-method-text3 {
+    width: 150px;
+    height: 90px;
+
+    float: right;
+}
+
+.teaching-method-text5 {
+    width: 200px;
+    height: 90px;
+
+    margin-left: 30px;
+    float: left;
+}
+
+.teaching-method-text4 {
+    width: 200px;
+    height: 90px;
+
+    margin-right: 40px;
+    float: right;
+}
+
+.teaching-method-h2-l {
+    margin-block-start: 0.1em;
+    margin-block-end: 0.1em;
+    text-align: center;
+
+}
+
+.teaching-method-h2-r {
+    margin-block-start: 0.1em;
+    margin-block-end: 0.1em;
+    text-align: center;
+}
+
+.teaching-method-p {
+    display: block;
+    text-align: center;
+    margin-block-start: 1em;
+    margin-block-end: 0.5em;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+}
+

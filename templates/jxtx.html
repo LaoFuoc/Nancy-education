@@ -1,0 +1,232 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load my_filter %}
+{% block header %}
+    <title>南西教育官网</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/jxtx.css' %}">
+{% endblock %}
+
+{% block contain %}
+    <!-- 选择南西 -->
+    <div class="choose-nancy">
+        {% for choose_nancy in choose_nancys %}
+            <div class="row-choose-nancy">
+                <div class="choose-nancy-title">
+                    <h2 class="about_h2">{{ choose_nancy.title }}</h2>
+                    <p class="about_p">{{ choose_nancy.s_title }}</p>
+                    <p class="about_line"></p>
+                </div>
+                <div class="choose-nancy-content">
+                    <!-- 白色板块 -->
+                    <div class="choose-nancy-content-l">
+                        <div class="choose-nancy-content-text1">
+                            <div class="c-n-c-tr-b"></div>
+                            <h2 class="c-n-c-h2">{{ choose_nancy.first1 }}</h2>
+                            <p>{{ choose_nancy.first2|safe }}</p>
+                        </div>
+                        <div class="choose-nancy-content-text3">
+                            <div class="c-n-c-tl-b"></div>
+                            <h2 class="c-n-c-h2" style="width: 500px;">{{ choose_nancy.third1 }}</h2>
+                            <p>{{ choose_nancy.third2|safe }}</p>
+                        </div>
+                        <div class="choose-nancy-content-text5">
+                            <div class="c-n-c-tr-b"></div>
+                            <h2 class="c-n-c-h2">{{ choose_nancy.fifth1 }}</h2>
+                            <p>{{ choose_nancy.fifth2|safe }}</p>
+                        </div>
+                    </div>
+                    <!-- 蓝色板块 -->
+                    <div class="choose-nancy-content-r">
+                        <div class="choose-nancy-content-text2">
+                            <div class="c-n-c-tr-br"></div>
+                            <h2>{{ choose_nancy.second1 }}</h2>
+                            <p>{{ choose_nancy.second2|safe }}</p>
+                        </div>
+                        <div class="choose-nancy-content-text4">
+                            <div class="c-n-c-tr-br"></div>
+                            <h2>{{ choose_nancy.fourth1 }}</h2>
+                            <p>{{ choose_nancy.fourth2|safe }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <!-- 教育体系 -->
+    <div class="education">
+        {% for education in educations %}
+            <div class="row-education">
+                <div class="education-title">
+                    <h2 class="about_h2" style="padding-top: 30px">{{ education.title }}</h2>
+                    <p class="about_p">{{ education.s_title }}</p>
+                    <p class="about_line"></p>
+                </div>
+                <div class="education-content">
+                    <div class="education-box">
+                        <div class="education-content-left">
+                            {{ education.title2 }}
+                        </div>
+                        <div class="education-content-right">
+                            <div class="edup edup1">{{ education.first1|safe }}</div>
+                            <div class="edup edup2">{{ education.second1|safe }}</div>
+                            <div class="edup edup3">{{ education.third1|safe }}</div>
+                            <div class="edup edup4">{{ education.fourth1|safe }}</div>
+                            <div class="edup edup5">{{ education.fifth1|safe }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <!-- 教育服务 -->
+    <div class="adminstration">
+        {% for service in services %}
+            <div class="row-adminstration">
+                <div class="adminstration-title">
+                    <h2 class="about_h2">{{ service.title }}</h2>
+                    <p class="about_p">{{ service.s_title }}</p>
+                    <p class="about_line"></p>
+                </div>
+
+                <div class="adminstration-content">
+                    <div class="threFath">
+                        <div style="position:relative;width:101%;height:100%">
+
+                            <div class="swiper-containerz">
+                                <div class="swiper-wrapper" id="threeFather">
+
+                                </div>
+                                <!-- 如果需要分页器 -->
+                                <div class="swiper-pagination"></div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="jt">
+                        <div class="toRights">
+                            <img src="{% static 'images/toLLFT.png' %}" alt="" @click="toRightx">
+                        </div>
+
+                        <div class="toLeftsss">
+                            <img src="{% static 'images/toRRight.png' %}" alt="">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            </div>
+            <script>
+                function goback() {
+                    document.body.scrollTop = document.documentElement.scrollTop = 0;
+                }
+
+
+                function initThree() {
+                    var threeArr = [{
+                        name: '课前',
+                        imgUrl: '{{ MEDIA_URL}}{{ service.before_img }}',
+                        sth: "{{ service.before_inner|mycut|safe|linebreaksbr|cut:'<br>'}}",
+                    },
+                        {
+                            name: '课中',
+                            imgUrl: '{{ MEDIA_URL}}{{ service.in_img }}',
+                            sth: "{{ service.in_inner|mycut|safe|linebreaksbr|cut:'<br>'}}",
+                        },
+                        {
+                            name: '课后',
+                            imgUrl: '{{ MEDIA_URL}}{{ service.after_img }}',
+                            sth: "{{ service.after_inner|mycut|safe|linebreaksbr|cut:'<br>'}}",
+                        },
+                    ]
+                    var str = ''
+
+                    threeArr.forEach((item, index) => {
+                        var stl = "<span style='margin-top:20px; color:#ffff; position: absolute; background:#8c95fe;'>" + item.name + "</span>"
+
+                        str += "<div  class='swiper-slide' ><div class='content-box'><div class='content-left-img'>"
+                            + stl + "<img src=" + item.imgUrl + "></div><div class='content-right-text'>" + item.sth + "</div></div></div>"
+                    })
+                    $("#threeFather").html(str)
+                    var mineswiperz = new Swiper('.swiper-containerz', {
+                        slidesPerView: 1,
+                        spaceBetween: 30,
+                        slidesPerGroup: 1,
+                        loop: true, // 循环模式选项
+                        autoplay: {
+                            delay: 2000,
+                            stopOnLastSlide: false,
+                            disableOnInteraction: true,
+                        },
+                        //           navigation: {
+                        //     nextEl: '.swiper-button-next',
+                        //     prevEl: '.swiper-button-prev',
+                        //   },
+                    })
+
+                    $(".toLeftsss").click(function () {
+                        mineswiperz.slidePrev();
+                    })
+                    $(".toRights").click(function () {
+                        mineswiperz.slideNext()
+                    })
+
+                }
+
+                initThree()
+            </script>
+        {% endfor %}
+    {#    底部轮播图#}
+    {% for bt in bt_carousel1 %}
+        <h2 class="about_h2" style="margin-top: -60px;">{{ bt.title }}</h2>
+        <p class="about_p">{{ bt.s_title }}</p>
+        <p class="about_line"></p>
+    {% endfor %}
+    <div class="lastSwipe">
+        <div class="swiper-container" style="position:relative" id="ks">
+            <div class="swiper-wrapper" id="lastFx">
+                {% for bt in bt_carousel1 %}
+                    <div class="swiper-slide"><img class='img' src="{{ MEDIA_URL }}{{ bt.bt_carousel_img1 }}"></div>
+                    <div class="swiper-slide"><img class='img' src="{{ MEDIA_URL }}{{ bt.bt_carousel_img2 }}"></div>
+                    <div class="swiper-slide"><img class='img' src="{{ MEDIA_URL }}{{ bt.bt_carousel_img3 }}"></div>
+                {% endfor %}
+            </div>
+            <!-- 如果需要分页器 -->
+            <div class="swiper-pagination" style="z-index：999; width:100%;margin-top: 50px;"></div>
+        </div>
+    </div>
+    <script>
+        function initLast() {
+            var mineswiperx = new Swiper('.swiper-container', {
+                paginationClickable: true,
+                observer: true, //修改swiper自己或子元素时，自动初始化swiper
+                observeParents: true, //修改swiper的父元素时，自动初始化swiper
+                slidesPerView: 3,
+                {#spaceBetween: 30,#}
+                slidesPerGroup: 3,
+                loop: true,
+                loopFillGroupWithBlank: true,
+            })
+        }
+
+        initLast()
+        $("#lastFx .swiper-slide-active").hover(function () {
+            $("#lastFx .swiper-slide-next").css("transform", "scale(1)");
+        })
+        $("#lastFx .swiper-slide-active").mouseout(function () {
+            $("#lastFx .swiper-slide-next").css("transform", "scale(1.2)");
+        })
+
+        $("#lastFx .swiper-slide").hover(function () {
+            $("#lastFx .swiper-slide-next").css("transform", "scale(1)");
+        })
+        $("#lastFx .swiper-slide").mouseout(function () {
+            $("#lastFx .swiper-slide-next").css("transform", "scale(1.2)");
+        })
+
+        $("#lastFx .swiper-slide-next").hover(function () {
+            $("#lastFx .swiper-slide-next").css("transform", "scale(1.2)");
+        })
+    </script>
+{% endblock %}

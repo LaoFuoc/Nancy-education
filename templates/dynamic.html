@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block contain %}
+    <style>
+        .dy-inner {
+            width: 800px;
+            min-height: 400px;
+            margin: auto;
+            height: 100%;
+            padding: 50px 0;
+        }
+        .point{
+            margin: 40px 0;
+        }
+
+        .contents{
+            line-height: 1.5em;
+        }
+
+        .contents img{
+            width: 500px;
+            height: 100%;
+            padding: 20px;
+        }
+    </style>
+
+    <div class="dy-inner">
+        <div class="list_box">
+{#            当前所属分类#}
+{#            <h2 class="left_h2">{{ category_name }}</h2>#}
+            <div class="contents">
+                <h1 class="contents_title">{{ current_new.title }}</h1>
+                <img src="{{ MEDIA_URL }}{{ current_new.img }}" alt="">
+                {{ current_new.content|safe }}
+            </div>
+
+            <div class="point">
+                {% if pre_new %}
+                    <span class="to_prev col-xs-12 col-sm-6 col-md-6">上一个：<a
+                            href="{% url 'news_detail' pre_new.id %}?cat={{ category }}">{{ pre_new.title }}</a></span>
+                {% else %}
+                    <span class="to_prev col-xs-12 col-sm-6 col-md-6">没有上一个</span>
+                {% endif %}
+                {% if next_new %}
+                    <span class="to_next col-xs-12 col-sm-6 col-md-6">下一个：<a
+                            href="{% url 'news_detail' next_new.id %}?cat={{ category }}"> {{ next_new.title }}</a></span>
+                {% else %}
+                    <span class="to_prev col-xs-12 col-sm-6 col-md-6">没有下一个</span>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

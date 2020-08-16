@@ -1,0 +1,452 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block header %}
+    <title>南西教育官网</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/xnbc.css' %}">
+
+{% endblock %}
+
+{% block contain %}
+    <!-- 小南编程 -->
+    <div class="programming">
+        {% for programming in programmings %}
+            <div class="row-programming">
+                <div class="programming-title">
+                    <h2 class="about_h2">{{ programming.title }}</h2>
+                    <p class="about_p">{{ programming.s_title1 }}</p>
+                    <p class="about_line"></p>
+                    <p>{{ programming.s_title2 }}</p>
+                </div>
+                <div class="programming-content">
+                    <div class="pro-con-left">
+                        <img src="{{ MEDIA_URL }}{{ programming.program1_img }}">
+                        <h2>{{ programming.program1 }}</h2>
+                        <div class="p_c_l">{{ programming.program1_int |safe }}</div>
+                    </div>
+                    <div class="pro-con-right">
+                        <img src="{{ MEDIA_URL }}{{ programming.program2_img }}">
+                        <h2>{{ programming.program2 }}</h2>
+                        <div class="p_c_r">{{ programming.program2_int |safe }}</div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    {#        广告部分#}
+    <div class="mask" v-if="showMask">
+        <div class="poupCon fr_r_b">
+            <img src="{% static 'images/closeIT.png' %}" alt="" class="closeIT" onclick="closeTip()">
+            <img src="{% for tea_adv in tea_advs %}{{ MEDIA_URL }}{{ tea_adv.advertising2_img }}{% endfor %}" alt=""
+                 class="tipLeft">
+            <form class="formGroupX  fr_c_c" id="up">
+                <div style="margin-bottom:20px; width:80%">
+                    <div style="margin-bottom:10px">联系方式：</div>
+                    <input type="text" name="phone" required="required" autocomplete="on">
+                </div>
+                <div style="margin-bottom:20px; width:80%">
+                    <div style="margin-bottom:10px">小朋友姓名：</div>
+                    <input type="text" name="name" required="required" autocomplete="on">
+                </div>
+                <div style="margin-bottom:20px; width:80%">
+                    <div style="margin-bottom:10px">小朋友年龄：</div>
+                    <input type="text" name="age" required="required" autocomplete="on">
+                </div>
+                <button type="submit" class="button" id="submit_btn">立即领取</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        $('#up').submit(function () {
+            $.ajax({
+                cache: false,
+                type: 'POST',
+                url: {% url 'xnbc' %},
+                data: $('#up').serialize(),
+                success:
+                    function (data) {
+                        if (data.status == 'success') {
+                            alert('提交成功')
+                        } else if (data.status == 'failed') {
+                            alert('提交失败，请修改信息后，重新提交！')
+                        }
+                    }
+            })
+        })
+    </script>
+    <div class="contactUs" style="margin-top: 20px">
+        <img src="{% static 'images/contactUs.jpg' %}" alt="">
+        <div class="conUs" onclick="showTip()">立即咨询</div>
+    </div>
+    <!-- 为什么选择小南编程 -->
+    <div class="why">
+        {% for why_choose in why_chooses %}
+            <div class="row-why">
+                <div class="why-title">
+                    <h2 class="about_h2" style="padding-top: 50px; margin-top: 0">{{ why_choose.title }}</h2>
+                    <p class="about_p">{{ why_choose.s_title1 }}</p>
+                    <p class="about_line"></p>
+                    <p>{{ why_choose.s_title2 }}</p>
+                </div>
+                <div class="why-content">
+                    <div class="why-con-left">
+                        <div class="why-con-up">
+                            <div class="why-con-img">
+                                <img src="{{ MEDIA_URL }}{{ why_choose.why1_img }}">
+                            </div>
+                            <div class="why-con-text">
+                                <h4>{{ why_choose.why1 }}</h4>
+                                <div class="w_c_t">{{ why_choose.why1_int|safe }}</div>
+                            </div>
+                        </div>
+                        <div class="why-con-down">
+                            <div class="why-con-img">
+                                <img src="{{ MEDIA_URL }}{{ why_choose.why3_img }}">
+                            </div>
+                            <div class="why-con-text">
+                                <h4>{{ why_choose.why3 }}</h4>
+                                <div class="w_c_t">{{ why_choose.why3_int|safe }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="why-con-right">
+                        <div class="why-con-up">
+                            <div class="why-con-img">
+                                <img src="{{ MEDIA_URL }}{{ why_choose.why2_img }}">
+                            </div>
+                            <div class="why-con-text">
+                                <h4>{{ why_choose.why2 }}</h4>
+                                <div class="w_c_t">{{ why_choose.why2_int|safe }}</div>
+                            </div>
+                        </div>
+                        <div class="why-con-down">
+                            <div class="why-con-img">
+                                <img src="{{ MEDIA_URL }}{{ why_choose.why4_img }}">
+                            </div>
+                            <div class="why-con-text">
+                                <h4>{{ why_choose.why4 }}</h4>
+                                <div class="w_c_t">{{ why_choose.why4_int|safe }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <!-- 国内一流的教研团队 -->
+    <div class="research">
+        {% for first_clas in first_class %}
+            <div class="row-research">
+                <div class="research-title">
+                    <h2 class="about_h2">{{ first_clas.title }}</h2>
+                    <p class="about_p">{{ first_clas.s_title1 }}</p>
+                    <p class="about_line"></p>
+                    <p>{{ first_clas.s_title2 }}</p>
+                </div>
+                <div class="research-content">
+                    <p>{{ first_clas.inner|safe }}</p>
+                    <div class="research-teacher">
+                        <ul class="contentboxs">
+                            <li class="cons">
+                                <img src="{{ MEDIA_URL }}{{ first_clas.class1_img }}" alt="test"/>
+                                <div class="txts">
+                                    <h3>{{ first_clas.class1 }}</h3>
+                                    <p>{{ first_clas.class1_int }}</p>
+                                </div>
+                            </li>
+                            <li class="cons">
+                                <img src="{{ MEDIA_URL }}{{ first_clas.class2_img }}" alt="test"/>
+                                <div class="txts">
+                                    <h3>{{ first_clas.class2 }}</h3>
+                                    <p>{{ first_clas.class2_int }}</p>
+                                </div>
+                            </li>
+                            <li class="cons">
+                                <img src="{{ MEDIA_URL }}{{ first_clas.class3_img }}" alt="test"/>
+                                <div class="txts">
+                                    <h3>{{ first_clas.class3 }}</h3>
+                                    <p>{{ first_clas.class3_int }}</p>
+                                </div>
+                            </li>
+                            <li class="cons">
+                                <img src="{{ MEDIA_URL }}{{ first_clas.class4_img }}" alt="test"/>
+                                <div class="txts">
+                                    <h3>{{ first_clas.class4 }}</h3>
+                                    <p>{{ first_clas.class4_int }}</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <script>
+                        $(function () {
+                            $(".cons").hover(function () {
+                                $(this).find(".txts").stop().animate({
+                                    height: "90%"
+                                }, 200);
+                                $(this).find(".txts h3").stop().animate({
+                                    paddingTop: "10px"
+                                }, 200);
+                            }, function () {
+                                $(this).find(".txts").stop().animate({
+                                    height: "0px"
+                                }, 200);
+                                $(this).find(".txts h3").stop().animate({
+                                    paddingTop: "0px"
+                                }, 200);
+                            })
+                        });
+                    </script>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <!-- 国内一流的课程体系 -->
+    <div class="curriculum">
+
+        <div class="row-curricullum">
+            {% for foo in class_teach %}
+                <div class="curriculum-title">
+                    <h2 class="about_h2">{{ foo.title }}</h2>
+                    <p class="about_p">{{ foo.s_title1 }}</p>
+                    <p class="about_line"></p>
+                </div>
+                <div class="Jhds">
+                    <input checked class="radio" type="radio" name="Jhds" id="Jhds1">
+                    <input class="radio" type="radio" name="Jhds" id="Jhds2">
+                    <input class="radio" type="radio" name="Jhds" id="Jhds3">
+                    <input class="radio" type="radio" name="Jhds" id="Jhds4">
+                    <div class="tab-title">
+                        <label for="Jhds1">{{ foo.course_title1 }}</label>
+                        <label for="Jhds2">{{ foo.course_title2 }}</label>
+                        <label for="Jhds3">{{ foo.course_title3 }}</label>
+                        <label for="Jhds4">{{ foo.course_title4 }}</label>
+                    </div>
+                    <div class="tab-outer">
+                        <ul class="tab-inner">
+                            <div class="system-bg-img">
+                                <img class="system-img1" src="{{ MEDIA_URL }}{{ foo.course1_img }}">
+                            </div>
+
+                            <div class="system-content-text">
+                                <h2>{{ foo.course1 }}</h2>
+                                <h2 style="color: #8D96FF;">{{ foo.age1 }}</h2>
+                                <div class="sys-text">{{ foo.inner1 | safe }}</div>
+                            </div>
+                        </ul>
+
+                        <ul class="tab-inner">
+                            <div class="system-bg-img">
+                                <img class="system-img1" src="{{ MEDIA_URL }}{{ foo.course2_img }}">
+                            </div>
+                            <div class="system-content-text">
+                                <h2>{{ foo.course2 }}</h2>
+                                <h2 style="color: #8D96FF;">{{ foo.age2 }}</h2>
+                                <div class="sys-text">{{ foo.inner2  | safe }}</div>
+                            </div>
+                        </ul>
+                        <ul class="tab-inner">
+                            <div class="system-bg-img">
+                                <img class="system-img1" src="{{ MEDIA_URL }}{{ foo.course3_img }}">
+                            </div>
+                            <div class="system-content-text">
+                                <h2>{{ foo.course3 }}</h2>
+                                <h2 style="color: #8D96FF;">{{ foo.age3 }}</h2>
+                                <div class="sys-text">{{ foo.inner3  | safe }}</div>
+                            </div>
+
+                        </ul>
+                        <ul class="tab-inner">
+                            <div class="system-bg-img">
+                                <img class="system-img1" src="{{ MEDIA_URL }}{{ foo.course4_img }}">
+                            </div>
+                            <div class="system-content-text">
+                                <h2>{{ foo.course4 }}</h2>
+                                <h2 style="color: #8D96FF;">{{ foo.age4 }}</h2>
+                                <div class="sys-text">{{ foo.inner4  | safe }}</div>
+                            </div>
+                        </ul>
+                        <div class="clearfloat"></div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- 精选国内顶尖赛事，真正做到学以致用 -->
+    <div class="domestic">
+        <div class="row-domestic">
+            {% for match1 in first_match1 %}
+                <div class="modestic-title">
+                    <h2 class="about_h2">{{ match1.title }}</h2>
+                    <p class="about_p">{{ match1.s_title1 }}</p>
+                    <p class="about_line"></p>
+                </div>
+                <div class="demostic-content">
+                <div class="Jhdss">
+                <input checked class="radios" type="radio" name="Jhdss" id="Jhds1s">
+                <input class="radios" type="radio" name="Jhdss" id="Jhds2s">
+                <input class="radios" type="radio" name="Jhdss" id="Jhds3s">
+                <input class="radios" type="radio" name="Jhdss" id="Jhds4s">
+                <div class="tab-titles">
+                    <label for="Jhds1s">{{ match1.match_title1 }}</label>
+                    <label for="Jhds2s">{% for match2 in first_match2 %}{{ match2.match_title1 }}{% endfor %}</label>
+                    <label for="Jhds3s">{% for match3 in first_match3 %}{{ match3.match_title1 }}{% endfor %}</label>
+                    <label for="Jhds4s">
+                        {% for match4 in first_match4 %}{{ match4.match_title1 }}{% endfor %}</label>
+                </div>
+                <div class="tab-outers">
+                <ul class="tab-inners">
+                    <div class="border-ys">
+                        <div class="modestic-left">
+                            <h3>{{ match1.match1 }}</h3>
+                            <div class="m_m_t">{{ match1.inner1 |safe }}</div>
+                        </div>
+                        <div class="modestic-mid"></div>
+                        <div class="modestic-right">
+                            <h3>{{ match1.match2 }}</h3>
+                            <div class="m_m_t">{{ match1.inner2 |safe }}</div>
+                        </div>
+                    </div>
+                    <div class="modestic-img">
+                        <img src="{{ MEDIA_URL }}{{ match1.match1_img }}">
+                        <img src="{{ MEDIA_URL }}{{ match1.match2_img }}">
+                        <img src="{{ MEDIA_URL }}{{ match1.match3_img }}">
+                    </div>
+
+                </ul>
+            {% endfor %}
+
+            {% for match2 in first_match2 %}
+                <ul class="tab-inners">
+                    <div class="border-ys">
+                        <div class="modestic-left">
+                            <h3>{{ match2.match1 }}</h3>
+                            <div class="m_m_t">{{ match2.inner1 |safe }}</div>
+                        </div>
+                        <div class="modestic-mid"></div>
+                        <div class="modestic-right">
+                            <h3>{{ match2.match2 }}</h3>
+                            <div class="m_m_t">{{ match2.inner2 |safe }}</div>
+                        </div>
+                    </div>
+                    <div class="modestic-img">
+                        <img src="{{ MEDIA_URL }}{{ match2.match1_img }}">
+                        <img src="{{ MEDIA_URL }}{{ match2.match2_img }}">
+                        <img src="{{ MEDIA_URL }}{{ match2.match3_img }}">
+                    </div>
+                </ul>
+            {% endfor %}
+            {% for match3 in first_match3 %}
+                <ul class="tab-inners">
+                    <div class="border-ys">
+                        <div class="modestic-left">
+                            <h3>{{ match3.match1 }}</h3>
+                            <div class="m_m_t">{{ match3.inner1 |safe }}</div>
+                        </div>
+                        <div class="modestic-mid"></div>
+                        <div class="modestic-right">
+                            <h3>{{ match3.match2 }}</h3>
+                            <div class="m_m_t">{{ match3.inner2 |safe }}</div>
+                        </div>
+                    </div>
+                    <div class="modestic-img">
+                        <img src="{{ MEDIA_URL }}{{ match3.match1_img }}">
+                        <img src="{{ MEDIA_URL }}{{ match3.match2_img }}">
+                        <img src="{{ MEDIA_URL }}{{ match3.match3_img }}">
+                    </div>
+
+                </ul>
+            {% endfor %}
+            {% for match4 in first_match4 %}
+                <ul class="tab-inners">
+                    <div class="border-ys">
+                        <div class="modestic-left">
+                            <h3>{{ match4.match1 }}</h3>
+                            <div class="m_m_t">{{ match4.inner1 |safe }}</div>
+                        </div>
+                        <div class="modestic-mid"></div>
+                        <div class="modestic-right">
+                            <h3>{{ match4.match2 }}</h3>
+                            <div class="m_m_t">{{ match4.inner2 |safe }}</div>
+                        </div>
+                    </div>
+                    <div class="modestic-img">
+                        <img src="{{ MEDIA_URL }}{{ match4.match1_img }}">
+                        <img src="{{ MEDIA_URL }}{{ match4.match2_img }}">
+                        <img src="{{ MEDIA_URL }}{{ match4.match3_img }}">
+                    </div>
+
+                </ul>
+            {% endfor %}
+            </div>
+            </div>
+            </div>
+
+        </div>
+    </div>
+
+    {#    底部轮播图#}
+    {% for bt in bt_carousel1 %}
+        <h2 class="about_h2">{{ bt.title }}</h2>
+        <p class="about_p">{{ bt.s_title }}</p>
+        <p class="about_line"></p>
+    {% endfor %}
+    <div class="lastSwipe">
+        <div class="swiper-container" style="position:relative" id="ks">
+            <div class="swiper-wrapper" id="lastFx">
+                {% for bt in bt_carousel1 %}
+                    <div class="swiper-slide"><img class='img' src="{{ MEDIA_URL }}{{ bt.bt_carousel_img1 }}"></div>
+                    <div class="swiper-slide"><img class='img' src="{{ MEDIA_URL }}{{ bt.bt_carousel_img2 }}"></div>
+                    <div class="swiper-slide"><img class='img' src="{{ MEDIA_URL }}{{ bt.bt_carousel_img3 }}"></div>
+                {% endfor %}
+            </div>
+            <!-- 如果需要分页器 -->
+            <div class="swiper-pagination" style="z-index：999; width:100%;margin-top: 50px;"></div>
+        </div>
+    </div>
+
+    <script>
+        function closeTip() {
+            $(".mask").hide()
+        }
+
+        function showTip() {
+            $(".mask").show()
+        }
+
+        function initLast() {
+            var mineswiperx = new Swiper('.swiper-container', {
+                paginationClickable: true,
+                observer: true, //修改swiper自己或子元素时，自动初始化swiper
+                observeParents: true, //修改swiper的父元素时，自动初始化swiper
+                slidesPerView: 3,
+                {#spaceBetween: 30,#}
+                slidesPerGroup: 3,
+                loop: true,
+                loopFillGroupWithBlank: true,
+            })
+        }
+
+        initLast()
+        $("#lastFx .swiper-slide-active").hover(function () {
+            $("#lastFx .swiper-slide-next").css("transform", "scale(1)");
+        })
+        $("#lastFx .swiper-slide-active").mouseout(function () {
+            $("#lastFx .swiper-slide-next").css("transform", "scale(1.2)");
+        })
+
+        $("#lastFx .swiper-slide").hover(function () {
+            $("#lastFx .swiper-slide-next").css("transform", "scale(1)");
+        })
+        $("#lastFx .swiper-slide").mouseout(function () {
+            $("#lastFx .swiper-slide-next").css("transform", "scale(1.2)");
+        })
+
+        $("#lastFx .swiper-slide-next").hover(function () {
+            $("#lastFx .swiper-slide-next").css("transform", "scale(1.2)");
+        })
+    </script>
+{% endblock %}

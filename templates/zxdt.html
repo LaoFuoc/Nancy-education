@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block header %}
+    <title>南西教育官网</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/zxdt.css' %}">
+{% endblock %}
+
+{% block contain %}
+    <div class="jump" id="jump"></div>
+    <div class="news">
+        <div class="news-left">
+            <div class="news-table">
+                <ul>
+                    <li class="on"><a href="{% url 'zxdt' %}?cat=hd#jump">活动</a></li>
+                    <li><a href="{% url 'zxdt' %}?cat=zx#jump">教育咨询</a></li>
+                </ul>
+            </div>
+            <div class="news-inner">
+                <ul>
+                    {% for new in all_news %}
+                        <li>
+                            <div class="thumbnail-news">
+                                <a href="{% url 'news_detail' new.id %}?cat={{ category }}{{ new.title }}"><img
+                                        src="{{ MEDIA_URL }}{{ new.img }}" alt=""></a>
+                            </div>
+                            <div class="news_time">
+                                {#                                <p class="years">20</p>#}
+                                {#                                <p class="month">1月</p>#}
+                            </div>
+                            <div class="news-content">
+                                <p class="news-title">
+                                    <a href="{% url 'news_detail' new.id %}?cat={{ category }}{{ new.title }}">
+                                        {% if new.title|length > 20 %}
+                                            {{ new.title|slice:":20" }}...
+                                        {% else %}
+                                            {{ new.title }}
+                                        {% endif %}
+                                    </a>
+                                </p>
+                                <div class="desc">
+                                    {% if new.content|length > 60%}
+                                        {{ new.content|safe |slice:":60"}}...
+                                    {% else %}
+                                        {{ new.content|safe }}
+                                    {% endif %}
+                                </div>
+                                <p class="pub-time">{{ new.add_time }}</p>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+                <div class="page">
+                    {% if all_news.has_previous %}
+                        <a href="?page={{ all_news.previous_page_number }}&cat={{ category }}">上一页</a>
+                    {% else %}
+                        <a href="javascript:;">上一页</a>
+                    {% endif %}
+
+                    {% for page in all_news.paginator.page_range %}
+                        {% ifequal page all_news.number %}
+                            <span class='current'>{{ page }}</span>
+                        {% else %}
+                            <a href='?page={{ page }}&cat={{ category }}'>{{ page }}</a>
+                        {% endifequal %}
+                    {% endfor %}
+                    {% if all_news.has_next %}
+                        <a href="?page={{ all_news.next_page_number }}&cat={{ category }}">下一页</a>
+                    {% else %}
+                        <a href="javascript:;">下一页</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="news-right">
+            <div class="h-label">
+                <h2 class="hots">热点标签</h2>
+                <ul class="wrap">
+                    {% for tag in tags %}
+                        <li><a href="{% url 'zxdt' %}?tag={{ tag.title }}#jump">{{ tag.title }}</a></li>
+                    {% endfor %}
+                </ul>
+                <img class="hots-img" src="{% static 'images/3.png' %}" alt>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $(".news-table li a").each(function () {
+                if ($(this)[0].href == String(window.location)) {
+                    $(this).addClass("on").siblings().removeClass("on");
+                    $(this).parent('li').addClass("on").siblings().removeClass("on");
+                }
+            });
+        });
+    </script>
+    {#    底部轮播图#}
+    {% for bt in bt_carousel1 %}
+        <h2 class="about_h2">{{ bt.title }}</h2>
+        <p class="about_p">{{ bt.s_title }}</p>
+        <p class="about_line"></p>
+    {% endfor %}
+    <div class="lastSwipe">
+        <div class="swiper-container" style="position:relative" id="ks">
+            <div class="swiper-wrapper" id="lastFx">
+                {% for bt in bt_carousel1 %}
+                    <div class="swiper-slide"><img class='img' src="{{ MEDIA_URL }}{{ bt.bt_carousel_img1 }}"></div>
+                    <div class="swiper-slide"><img class='img' src="{{ MEDIA_URL }}{{ bt.bt_carousel_img2 }}"></div>
+                    <div class="swiper-slide"><img class='img' src="{{ MEDIA_URL }}{{ bt.bt_carousel_img3 }}"></div>
+                {% endfor %}
+            </div>
+            <!-- 如果需要分页器 -->
+            <div class="swiper-pagination" style="z-index：999; width:100%;margin-top: 50px;"></div>
+        </div>
+    </div>
+    <script>
+        function initLast() {
+            var mineswiperx = new Swiper('.swiper-container', {
+                paginationClickable: true,
+                observer: true, //修改swiper自己或子元素时，自动初始化swiper
+                observeParents: true, //修改swiper的父元素时，自动初始化swiper
+                slidesPerView: 3,
+                {#spaceBetween: 30,#}
+                slidesPerGroup: 3,
+                loop: true,
+                loopFillGroupWithBlank: true,
+            })
+        }
+
+        initLast()
+        $("#lastFx .swiper-slide-active").hover(function () {
+            $("#lastFx .swiper-slide-next").css("transform", "scale(1)");
+        })
+        $("#lastFx .swiper-slide-active").mouseout(function () {
+            $("#lastFx .swiper-slide-next").css("transform", "scale(1.2)");
+        })
+
+        $("#lastFx .swiper-slide").hover(function () {
+            $("#lastFx .swiper-slide-next").css("transform", "scale(1)");
+        })
+        $("#lastFx .swiper-slide").mouseout(function () {
+            $("#lastFx .swiper-slide-next").css("transform", "scale(1.2)");
+        })
+
+        $("#lastFx .swiper-slide-next").hover(function () {
+            $("#lastFx .swiper-slide-next").css("transform", "scale(1.2)");
+        })
+    </script>
+{% endblock %}

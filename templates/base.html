@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<!-- 该页面为通用基础页面，是其他页面继承的模板 -->
+{% load static %}
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=0.2,user-scalable=yes"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/swiper.css' %}">
+    <link REL="SHORTCUT ICON" HREF="{% static "images/favicon.ico" %}"/>
+    <script src="{% static 'js/jquery.min2.1.4.js' %}"></script>
+    <script src="{% static 'js/swiper.js' %}"></script>
+
+    <!-- 预留js及css模块 -->
+    {% block header %} {% endblock %}
+</head>
+<body>
+<div id="container">
+    <header>
+        <div class="headers">
+            <img src="{% static 'images/slogan.png' %}" alt class="loveNacy"/>
+            <div class="hR fr_c_e">
+                <div class="callNacy fr_r_e">
+                    <img src="{% static 'images/call.jpg' %}" alt/>
+                    {% for carouse in carousels %}
+                        {{ carouse.number }}
+
+                        </div>
+                        <a href="{{ carouse.url }}" class="styleInfo">南西教育网课：http://www.nanxijy.com</a>
+                        </div>
+                    {% endfor %}
+        </div>
+        <div class="nav fr_r_c" id="nav">
+            <div class="banXin fr_r_b">
+                <div class="navLef">
+                    <img src="{% static 'images/nanxi.png' %}" alt class="schoolLogo"/>
+                </div>
+                <div class="navRight">
+                    <ul>
+                        <li><a href="{% url 'index' %}">首页</a></li>
+                        <li><a href="{% url 'gynx' %}">关于南西</a></li>
+                        <li><a href="{% url 'kcjs' %}">课程介绍</a></li>
+                        <li><a href="{% url 'jxtx' %}">教学体系</a></li>
+                        <li><a href="{% url 'zxdt' %}">最新动态</a></li>
+                        <li><a href="{% url 'xnbc' %}">小南编程</a></li>
+                        <li><a href="{% url 'lxwm' %}">联系我们</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="swiperFir">
+            <div class="nav_toRight">
+                <img src="{% static 'images/toLLFT.png' %}" alt="">
+            </div>
+            <div class="nav_toLeft">
+                <img src="{% static 'images/toRRight.png' %}" alt="">
+            </div>
+            <div class="swiper-containerx">
+                <div class="swiper-wrapper" id="firstSwipe">
+                </div>
+                <!-- 如果需要分页器 -->
+                {#            <div class="swiper-pagination"></div>#}
+            </div>
+        </div>
+    </header>
+
+    <!-- 主体内容模块 -->
+    {% block contain %}
+
+    {% endblock %}
+
+
+    <!-- 底部信息展示 -->
+    <footer>
+{#        {% for bt in bt_carousel1 %}#}
+{#            <h2 class="about_h2">{{ bt.title }}</h2>#}
+{#            <p class="about_p">{{ bt.s_title }}</p>#}
+{#            <p class="about_line"></p>#}
+{#        {% endfor %}#}
+{#        <div class="lastSwipe">#}
+{#            <div class="swiper-container" style="position:relative" id="ks">#}
+{#                <div class="swiper-wrapper" id="lastFx">#}
+{#                    {% for bt in bt_carousel1 %}#}
+{#                        <div class="swiper-slide"><img class='img' src="{{ MEDIA_URL }}{{ bt.bt_carousel_img1 }}"></div>#}
+{#                        <div class="swiper-slide"><img class='img' src="{{ MEDIA_URL }}{{ bt.bt_carousel_img2 }}"></div>#}
+{#                        <div class="swiper-slide"><img class='img' src="{{ MEDIA_URL }}{{ bt.bt_carousel_img3 }}"></div>#}
+{#                    {% endfor %}#}
+{#                    {% for bt in bt_carousel2 %}#}
+{#                        <div class="swiper-slide"><img class='img' src="{{ MEDIA_URL }}{{ bt.bt_carousel_img1 }}"></div>#}
+{#                        <div class="swiper-slide"><img class='img' src="{{ MEDIA_URL }}{{ bt.bt_carousel_img2 }}"></div>#}
+{#                        <div class="swiper-slide"><img class='img' src="{{ MEDIA_URL }}{{ bt.bt_carousel_img3 }}"></div>#}
+{#                    {% endfor %}#}
+{#                    {% for bt in bt_carousel3 %}#}
+{#                        <div class="swiper-slide"><img class='img' src="{{ MEDIA_URL }}{{ bt.bt_carousel_img1 }}"></div>#}
+{#                        <div class="swiper-slide"><img class='img' src="{{ MEDIA_URL }}{{ bt.bt_carousel_img2 }}"></div>#}
+{#                        <div class="swiper-slide"><img class='img' src="{{ MEDIA_URL }}{{ bt.bt_carousel_img3 }}"></div>#}
+{#                    {% endfor %}#}
+{#                    {% for bt in bt_carousel4 %}#}
+{#                        <div class="swiper-slide"><img class='img' src="{{ MEDIA_URL }}{{ bt.bt_carousel_img1 }}"></div>#}
+{#                        <div class="swiper-slide"><img class='img' src="{{ MEDIA_URL }}{{ bt.bt_carousel_img2 }}"></div>#}
+{#                        <div class="swiper-slide"><img class='img' src="{{ MEDIA_URL }}{{ bt.bt_carousel_img3 }}"></div>#}
+{#                    {% endfor %}#}
+{#                    {% for bt in bt_carousel5 %}#}
+{#                        <div class="swiper-slide"><img class='img' src="{{ MEDIA_URL }}{{ bt.bt_carousel_img1 }}"></div>#}
+{#                        <div class="swiper-slide"><img class='img' src="{{ MEDIA_URL }}{{ bt.bt_carousel_img2 }}"></div>#}
+{#                        <div class="swiper-slide"><img class='img' src="{{ MEDIA_URL }}{{ bt.bt_carousel_img3 }}"></div>#}
+{#                    {% endfor %}#}
+{#                </div>#}
+{#                <!-- 如果需要分页器 -->#}
+{#                <div class="swiper-pagination" style="z-index：999; width:100%;margin-top: 50px;"></div>#}
+{#            </div>#}
+{#        </div>#}
+
+        <div class="lastBtn fr_r_e">
+            <img src="{% static 'images/toTop.png' %}" alt="" class="toTOPIMG" onclick="goback()">
+        </div>
+        <div class="lastEnd">
+            {#        底部导航栏#}
+            <div class="nav fr_r_c" style="height:90px">
+                <div class="banXin fr_r_s">
+                    <div class="navLefs" style="height: 75px;margin-bottom: 25px">
+                        <img src="{% static 'images/logo.png' %}" alt class="schoolLogo"/>
+                    </div>
+                    <div class="navRight2 enul" style="width:90%">
+                        <ul class="enul">
+                            <li><img src="{% static 'images/首页icon.png' %}" alt=""><a href="{% url 'index' %}">首页</a>
+                            </li>
+                            <li><img src="{% static 'images/关于.png' %}" alt=""><a href="{% url 'gynx' %}">关于南西</a>
+                            </li>
+                            <li><img src="{% static 'images/教育-23.png' %}" alt=""><a href="{% url 'kcjs' %}">小学辅导</a>
+                            </li>
+                            <li><img src="{% static 'images/孩子试题.png' %}" alt=""><a href="{% url 'kcjs' %}">中学辅导</a>
+                            </li>
+                            <li><img src="{% static 'images/教学.png' %}" alt=""><a href="{% url 'jxtx' %}">教学体系</a>
+                            </li>
+                            <li><img src="{% static 'images/动态.png' %}" alt=""><a href="{% url 'zxdt' %}">最新动态</a>
+                            </li>
+                            <li><img src="{% static 'images/代码示例.png' %}" alt=""><a href="{% url 'xnbc' %}">小南编程</a>
+                            </li>
+                            <li><img src="{% static 'images/联系我们.png' %}" alt=""><a href="{% url 'lxwm' %}">联系我们</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+            {#        <img src="{% static 'images/lastParte.jpg' %}" alt="" id="lastWrite">#}
+            <div class="main-menu">
+                <ul>
+                    <li class="campus">
+                        <div style="margin-top: 15px;"></div>
+                        {% for bt_nav in bt_navs %}
+                            <img src="{% static 'images/学校.png' %}">
+                            <h2>{{ bt_nav.title }}</h2>
+                            <ul>
+                                <li>{{ bt_nav.address }}
+                                </li>
+                                <li style="margin-bottom: 20px;">{{ bt_nav.phone }}
+                                </li>
+                            </ul>
+                        {% endfor %}
+                    </li>
+                    {% for bt_nav in bt_navs %}{% if forloop.first %}
+                        <li class="Information">
+                            <ul>
+                                <p><a href="{{ bt_nav.url1 }}">{{ bt_nav.record1 }}</a></p>
+                                <p><a href="{{ bt_nav.url2 }}">{{ bt_nav.record2 }}</a></p>
+                                <p>{{ bt_nav.imprimatur }}</p>
+                                <p>{{ bt_nav.License }}</p>
+                                <p>{{ bt_nav.other }}</p>
+                            </ul>
+                        </li>
+                        <img class="qrcode" src="{{ MEDIA_URL }}{{ bt_nav.qrcode }}" alt="">
+                    {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+
+    </footer>
+
+</body>
+</div>
+</html>
+
+<script>
+    $(document).ready(function () {
+        $(".navRight li a").each(function () {
+            if ($(this)[0].href == String(window.location)) {
+                $(this).addClass("on").siblings().removeClass("on");
+                $(this).parent('li').addClass("on").siblings().removeClass("on");
+            }
+        });
+    });
+
+
+    function goback() {
+        document.body.scrollTop = document.documentElement.scrollTop = 0;
+    }
+
+
+    function initFirstArr() {
+
+
+        var arrItem = [
+
+            {
+                name: 'swiperSlide5',
+                imgUrl: "{% for carousel in carousels %}{{ MEDIA_URL }}{{ carousel.carousel_figure1 }}{% endfor %}"
+            },
+            {
+                name: 'swiperSlide1',
+                imgUrl: "{% for carousel in carousels %}{{ MEDIA_URL }}{{ carousel.carousel_figure2 }}{% endfor %}"
+            },
+            {
+                name: 'swiperSlide51',
+                imgUrl: "{% for carousel in carousels %}{{ MEDIA_URL }}{{ carousel.carousel_figure3 }}{% endfor %}"
+            },
+            {
+                name: 'swiperSlide1111115',
+                imgUrl: "{% for carousel in carousels %}{{ MEDIA_URL }}{{ carousel.carousel_figure4 }}{% endfor %}"
+            },
+            {
+                name: 'swiperSlide1111116',
+                imgUrl: "{% for carousel in carousels %}{{ MEDIA_URL }}{{ carousel.carousel_figure5 }}{% endfor %}"
+            }
+        ]
+
+
+        var str = ""
+        arrItem.forEach((item, index) => {
+            str += "<div  class='swiper-slide' ><img class='img' src=" + item.imgUrl + "></div>"
+        })
+        $("#firstSwipe").html(str)
+
+        var firstSwipe = new Swiper('.swiper-containerx', {
+            loop: true, // 循环模式选项
+            autoplay: {
+                delay: 2000,
+                stopOnLastSlide: false,
+                disableOnInteraction: true,
+            },
+            {#centeredSlides: true,#}
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        })
+        $(".nav_toLeft").click(function () {
+            firstSwipe.slidePrev();
+        })
+        $(".nav_toRight").click(function () {
+            firstSwipe.slideNext()
+        })
+    }
+
+    initFirstArr()
+</script>
+

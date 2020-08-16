@@ -1,0 +1,648 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load my_filter %}
+
+{% block header %}
+    <title>南西教育官网</title>
+{% endblock %}
+
+{% block contain %}
+    <div class="banXin" style="margin-top:30px;">
+        <div class="choseUs fr_r_a">
+            <img onclick="showpart(1)" class="choseUsimg"
+                 src="{% for foo in choose1 %}{{ MEDIA_URL }}{{ foo.title_img }}{% endfor %}" alt/>
+            <img onclick="showpart(2)" class="choseUsimg"
+                 src="{% for foo in choose2 %}{{ MEDIA_URL }}{{ foo.title_img }}{% endfor %}" alt/>
+            <img onclick="showpart(3)" class="choseUsimg"
+                 src="{% for foo in choose3 %}{{ MEDIA_URL }}{{ foo.title_img }}{% endfor %}" alt/>
+        </div>
+        <div class="choseTiTle fr_c_c">
+            {% for foo in choose1 %}
+                {{ foo.title }}
+                <p>{{ foo.s_title }}</p>
+                <img src="{% static 'images/about_line.jpg' %}" alt class="underLine"/>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="sixPart">
+        <div class="sixMain">
+            <div class="sixPartItem fl fr_c_c" v-for=" item in  tmpArr">
+                <img :src="item" alt/>
+
+            </div>
+        </div>
+    </div>
+    <div class="contactUs">
+        <img src="{% static 'images/contactUs.jpg' %}" alt/>
+        <div class="conUs" onclick="showTip()">立即咨询</div>
+    </div>
+    <div class="mask" v-if="showMask">
+        <div class="poupCon fr_r_b">
+            <img src="{% static 'images/closeIT.png' %}" alt="" class="closeIT" onclick="closeTip()">
+            <img src="{% for tea_adv in tea_advs %}{{ MEDIA_URL }}{{ tea_adv.advertising1_img }}{% endfor %}
+            " alt="" class="tipLeft">
+            <form class="formGroupX  fr_c_c" id="myform">
+                <div style="margin-bottom:20px; width:80%">
+                    <div style="margin-bottom:10px">学生姓名：</div>
+                    <div><input type="text" name="name" required="required" autocomplete="on"></div>
+                </div>
+                <div style="margin-bottom:20px; width:80%">
+                    <div style="margin-bottom:10px">联系方式：</div>
+                    <div><input type="text" name="phone" required="required" autocomplete="on"></div>
+                </div>
+                <div style="margin-bottom:20px; width:80%">
+                    <div style="margin-bottom:10px">学校：</div>
+                    <div><input type="text" name="school" required="required" autocomplete="on"></div>
+                </div>
+                <div style="margin-bottom:10px; width:80%">
+                    <div style="margin-bottom:10px">年龄：</div>
+                    <div><input type="text" name="age" required="required" autocomplete="on"></div>
+                </div>
+                <button type="submit" id="submit_btn" class="button">确定</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="choseTiTle fr_c_c" style="margin-top:20px;">
+        {% for six_teach in six_teachs %}
+            {{ six_teach.title }}
+            <p>{{ six_teach.s_title }}</p>
+            <img src="{% static 'images/about_line.jpg' %}" alt class="underLine"/>
+            </div>
+            {#        六步教学法#}
+            <div class="banXin" style="margin-bottom:50px; width:80%;height:400px;">
+            <div class="sixStep" style="position:relative">
+                <img src="{% static 'images/sixStep.png' %}" alt style="position:absolute;width:100%;hieght:100%"/>
+                <div class="stepCon">
+                    {{ six_teach.six_teach3 }}
+                    <p>
+                        {{ six_teach.six_teach4 }}</p>
+                </div>
+                <div class="stepCon">
+                    {{ six_teach.six_teach5 }}
+                    <p>{{ six_teach.six_teach6 }}</p>
+                </div>
+                <div class="stepCon">
+                    {{ six_teach.six_teach7 }}
+                    <p>{{ six_teach.six_teach8 }}</p>
+                </div>
+                <div class="stepCon">
+                    {{ six_teach.six_teach9 }}
+                    <p>{{ six_teach.six_teach10 }}</p>
+                </div>
+                <div class="stepCon">
+                    {{ six_teach.six_teach11 }}
+                    <p>{{ six_teach.six_teach12 }}</p>
+                </div>
+                <div class="stepCon">
+                    {{ six_teach.six_teach1 }}
+                    <p>{{ six_teach.six_teach2 }}</p>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+    {#    南西师资#}
+    <div class="nacyTea">
+        {% for teacher in teacher1 %}
+            <div class="choseTiTle fr_c_c" style="margin-top:20px;color:#fff">
+                {{ teacher.title }}
+                <p style="color:#fff">{{ teacher.s_title }}</p>
+                <img src="{% static 'images/about_line.jpg' %}" alt class="underLine"/>
+            </div>
+            <div class="mainFFF">
+                <div id="roundFa" style="width:100%;height:100%">
+                    <div class="roundImg">
+                        <img width="100%" src="{{ MEDIA_URL }}{{ teacher.teach_img }}" alt="Alternate Text"/>
+                        <p class="p1">{{ teacher.name1 }}</p>
+                        <p class="p2">{{ teacher.name2 }}</p>
+                        <p class="p3">{{ teacher.name3 }}</p>
+                        <p class="p4">{{ teacher.name4 }}</p>
+                        <p class="p5">{{ teacher.name5 }}</p>
+                        <p class="p6">{{ teacher.name6 }}</p>
+                    </div>
+                </div>
+                <div class="pagInfo" id="pageInfo">
+                    <div :class="[tmpNum==item?' fpageAct fpage':'fpage']" v-for="(item,index) in 6"
+                         @click="showWho(item)"></div>
+                </div>
+            </div>
+            <div class="mainF"></div>
+            <div class="mainFF"></div>
+        {% endfor %}
+    </div>
+    {% for tea_adv in tea_advs %}
+
+
+
+        <div class="choseTiTle fr_c_c" style="margin-top:40px;">
+            {{ tea_adv.title }}
+            <p>{{ tea_adv.s_title }}</p>
+            <img src="{% static 'images/about_line.jpg' %}" alt class="underLine"/>
+        </div>
+        <div class="selectPart">
+            <img src="{% static 'images/选拔.png' %}" alt/>
+        </div>
+        <div class="contactUs">
+            <a href="{{ tea_adv.urls }}"><img src="{% static 'images/contactUs.jpg' %}" alt/></a>
+            {#        <div class="conUs" onclick="showTip()">立即咨询</div>#}
+
+        </div>
+    {% endfor %}
+    {#    读书点亮生活#}
+    <div class="choseTiTle fr_c_c" style="margin-top:40px;margin-bottom:20px">
+        {% for carousel in carousel1 %}
+            {{ carousel.title }}
+            <p>{{ carousel.s_title }}</p>
+            <img src="{% static 'images/about_line.jpg' %}" alt class="underLine"/>
+        {% endfor %}
+    </div>
+    <div class="threFath">
+        <div style="position:relative;width:101%;
+            height:100%">
+            <div class="toRight">
+                <img src="{% static 'images/toLLFT.png' %}" alt="" @click="toRightx">
+            </div>
+
+            <div class="toLeft">
+                <img src="{% static 'images/toRRight.png' %}" alt="">
+            </div>
+
+            <div class="swiper-containerz">
+                <div class="swiper-wrapper" id="threeFather">
+
+                </div>
+                <!-- 如果需要分页器 -->
+                <div class="swiper-pagination"></div>
+
+            </div>
+        </div>
+    </div>
+    <div class="produc" style="padding-top:20px">
+        <div class="choseTiTle fr_c_c" style="margin-top:20px;color:#fff">
+            {% for accompany in accompanys %}
+                {{ accompany.title }}
+                <p style="color:#fff">{{ accompany.s_title }}</p>
+                <img src="{% static 'images/about_line.jpg' %}" alt class="underLine"/>
+            {% endfor %}
+        </div>
+        <div style="width: 100%;height:100%" id="cnm"></div>
+
+    </div>
+
+    {#    底部轮播图#}
+    {% for bt in bt_carousel1 %}
+        <h2 class="about_h2">{{ bt.title }}</h2>
+        <p class="about_p">{{ bt.s_title }}</p>
+        <p class="about_line"></p>
+    {% endfor %}
+    <div class="lastSwipe">
+        <div class="swiper-container" style="position:relative" id="ks">
+            <div class="swiper-wrapper" id="lastFx">
+                {% for bt in bt_carousel1 %}
+                    <div class="swiper-slide"><img class='img' src="{{ MEDIA_URL }}{{ bt.bt_carousel_img1 }}"></div>
+                    <div class="swiper-slide"><img class='img' src="{{ MEDIA_URL }}{{ bt.bt_carousel_img2 }}"></div>
+                    <div class="swiper-slide"><img class='img' src="{{ MEDIA_URL }}{{ bt.bt_carousel_img3 }}"></div>
+                {% endfor %}
+                {% for bt in bt_carousel2 %}
+                    <div class="swiper-slide"><img class='img' src="{{ MEDIA_URL }}{{ bt.bt_carousel_img1 }}"></div>
+                    <div class="swiper-slide"><img class='img' src="{{ MEDIA_URL }}{{ bt.bt_carousel_img2 }}"></div>
+                    <div class="swiper-slide"><img class='img' src="{{ MEDIA_URL }}{{ bt.bt_carousel_img3 }}"></div>
+                {% endfor %}
+                {% for bt in bt_carousel3 %}
+                    <div class="swiper-slide"><img class='img' src="{{ MEDIA_URL }}{{ bt.bt_carousel_img1 }}"></div>
+                    <div class="swiper-slide"><img class='img' src="{{ MEDIA_URL }}{{ bt.bt_carousel_img2 }}"></div>
+                    <div class="swiper-slide"><img class='img' src="{{ MEDIA_URL }}{{ bt.bt_carousel_img3 }}"></div>
+                {% endfor %}
+                {% for bt in bt_carousel4 %}
+                    <div class="swiper-slide"><img class='img' src="{{ MEDIA_URL }}{{ bt.bt_carousel_img1 }}"></div>
+                    <div class="swiper-slide"><img class='img' src="{{ MEDIA_URL }}{{ bt.bt_carousel_img2 }}"></div>
+                    <div class="swiper-slide"><img class='img' src="{{ MEDIA_URL }}{{ bt.bt_carousel_img3 }}"></div>
+                {% endfor %}
+                {% for bt in bt_carousel5 %}
+                    <div class="swiper-slide"><img class='img' src="{{ MEDIA_URL }}{{ bt.bt_carousel_img1 }}"></div>
+                    <div class="swiper-slide"><img class='img' src="{{ MEDIA_URL }}{{ bt.bt_carousel_img2 }}"></div>
+                    <div class="swiper-slide"><img class='img' src="{{ MEDIA_URL }}{{ bt.bt_carousel_img3 }}"></div>
+                {% endfor %}
+            </div>
+            <!-- 如果需要分页器 -->
+            <div class="swiper-pagination" style="z-index：999; width:100%;margin-top: 50px;"></div>
+        </div>
+    </div>
+
+
+    <script>
+
+        {#点击提交#}
+        $("#myform").submit(function () {
+            $.ajax({
+                cache: false,
+                type: "POST",
+                url: "{% url 'index' %}",
+                data: $('#myform').serialize(),
+                async: true,
+                success:
+                    function (data) {
+                        if (data.status == 'success') {
+                            alert("提交成功")
+                        } else if (data.status == 'failed') {
+                            alert("提交失败，请修改信息后，重新提交！")
+                        }
+                    }
+            });
+        });
+
+        function showpart(e) {
+            var sixarr = [];
+            if (e == 1) {
+                sixarr = [
+                    {% for cho in choose1 %}
+                        {pic: "{{MEDIA_URL}}{{ cho.choose_img1 }}", name: "{{ cho.choose_name1 }}"},
+                        {pic: "{{MEDIA_URL}}{{ cho.choose_img2 }}", name: "{{ cho.choose_name2 }}"},
+                        {pic: "{{MEDIA_URL}}{{ cho.choose_img3 }}", name: "{{ cho.choose_name3 }}"},
+                        {pic: "{{MEDIA_URL}}{{ cho.choose_img4 }}", name: "{{ cho.choose_name4 }}"},
+                        {pic: "{{MEDIA_URL}}{{ cho.choose_img5 }}", name: "{{ cho.choose_name5 }}"},
+                        {pic: "{{MEDIA_URL}}{{ cho.choose_img6 }}", name: "{{ cho.choose_name6 }}"},
+                    {% endfor %}
+                ];
+            } else if (e == 2) {
+                sixarr = [
+                    {% for cho in choose2 %}
+                        {pic: "{{MEDIA_URL}}{{ cho.choose_img1 }}", name: "{{ cho.choose_name1 }}"},
+                        {pic: "{{MEDIA_URL}}{{ cho.choose_img2 }}", name: "{{ cho.choose_name2 }}"},
+                        {pic: "{{MEDIA_URL}}{{ cho.choose_img3 }}", name: "{{ cho.choose_name3 }}"},
+                        {pic: "{{MEDIA_URL}}{{ cho.choose_img4 }}", name: "{{ cho.choose_name4 }}"},
+                        {pic: "{{MEDIA_URL}}{{ cho.choose_img5 }}", name: "{{ cho.choose_name5 }}"},
+                        {pic: "{{MEDIA_URL}}{{ cho.choose_img6 }}", name: "{{ cho.choose_name6 }}"},
+                    {% endfor %}
+                ]
+            } else {
+                sixarr = [
+                    {% for cho in choose3 %}
+                        {pic: "{{MEDIA_URL}}{{ cho.choose_img1 }}", name: "{{ cho.choose_name1 }}"},
+                        {pic: "{{MEDIA_URL}}{{ cho.choose_img2 }}", name: "{{ cho.choose_name2 }}"},
+                        {pic: "{{MEDIA_URL}}{{ cho.choose_img3 }}", name: "{{ cho.choose_name3 }}"},
+                        {pic: "{{MEDIA_URL}}{{ cho.choose_img4 }}", name: "{{ cho.choose_name4 }}"},
+                        {pic: "{{MEDIA_URL}}{{ cho.choose_img5 }}", name: "{{ cho.choose_name5 }}"},
+                        {pic: "{{MEDIA_URL}}{{ cho.choose_img6 }}", name: "{{ cho.choose_name6 }}"},
+                    {% endfor %}
+                ]
+            }
+            var str = "";
+            sixarr.forEach((item, index) => {
+                    str += "<div class='sixPartItem fl fr_c_c' ><img src='" + item.pic + "' alt />" + item.name + "</div>"
+                }
+            );
+            $('.sixMain').html(str)
+        }
+
+        function initPart() {
+            var sixArr = [
+                {% for cho in choose1 %}
+                    {pic: "{{MEDIA_URL}}{{ cho.choose_img1 }}", name: "{{ cho.choose_name1 }}"},
+                    {pic: "{{MEDIA_URL}}{{ cho.choose_img2 }}", name: "{{ cho.choose_name2 }}"},
+                    {pic: "{{MEDIA_URL}}{{ cho.choose_img3 }}", name: "{{ cho.choose_name3 }}"},
+                    {pic: "{{MEDIA_URL}}{{ cho.choose_img4 }}", name: "{{ cho.choose_name4 }}"},
+                    {pic: "{{MEDIA_URL}}{{ cho.choose_img5 }}", name: "{{ cho.choose_name5 }}"},
+                    {pic: "{{MEDIA_URL}}{{ cho.choose_img6 }}", name: "{{ cho.choose_name6 }}"},
+                {% endfor %}
+            ];
+
+            var str = "";
+            sixArr.forEach((item, index) => {
+                    str += "<div class='sixPartItem fl fr_c_c' ><img src='" + item.pic + "' alt />" + item.name + "</div>"
+                }
+            );
+            $('.sixMain').html(str)
+
+
+        }
+
+        initPart();
+
+        function initTea() {
+            var num = 6;
+            var stk = '';
+            for (var i = 0; i < 6; i++) {
+                stk += "<div class='fpage' onclick='showWho(" + i + ")'></div>"
+            }
+            console.log(stk, 234234234);
+            $('#pageInfo').html(stk)
+
+        }
+
+        var num = 0;
+        var timer = setInterval(() => {
+            num = num + 1;
+            if (num == 6) {
+                num = 0
+            }
+            showWho(num);
+        }, 2000);
+
+        function showWho(e) {
+            $('.fpage').eq(e).addClass('fpageAct')
+            $('.fpage').eq(e).siblings().removeClass('fpageAct')
+            var teacherArr = {};
+            if (e == 1) {
+                teacherArr = {
+                    {% for teacher in teacher1 %}
+                        url: "{{ MEDIA_URL }}{{ teacher.teach_img }}",
+                        names: [
+                            "{{ teacher.name1 }}",
+                            "{{ teacher.name2 }}",
+                            "{{ teacher.name3 }}",
+                            "{{ teacher.name4 }}",
+                            "{{ teacher.name5 }}",
+                            "{{ teacher.name6 }}",
+                        ]
+                    {% endfor %}
+                };
+            } else if (e == 2) {
+                teacherArr = {
+                    {% for teacher in teacher2 %}
+                        url: "{{ MEDIA_URL }}{{ teacher.teach_img }}",
+                        names: [
+                            "{{ teacher.name1 }}",
+                            "{{ teacher.name2 }}",
+                            "{{ teacher.name3 }}",
+                            "{{ teacher.name4 }}",
+                            "{{ teacher.name5 }}",
+                            "{{ teacher.name6 }}",
+                        ]
+                    {% endfor %}
+                };
+            } else if (e == 3) {
+                teacherArr = {
+                    {% for teacher in teacher3 %}
+                        url: "{{ MEDIA_URL }}{{ teacher.teach_img }}",
+                        names: [
+                            "{{ teacher.name1 }}",
+                            "{{ teacher.name2 }}",
+                            "{{ teacher.name3 }}",
+                            "{{ teacher.name4 }}",
+                            "{{ teacher.name5 }}",
+                            "{{ teacher.name6 }}",
+                        ]
+                    {% endfor %}
+                };
+            } else if (e == 4) {
+                teacherArr = {
+                    {% for teacher in teacher4 %}
+                        url: "{{ MEDIA_URL }}{{ teacher.teach_img }}",
+                        names: [
+                            "{{ teacher.name1 }}",
+                            "{{ teacher.name2 }}",
+                            "{{ teacher.name3 }}",
+                            "{{ teacher.name4 }}",
+                            "{{ teacher.name5 }}",
+                            "{{ teacher.name6 }}",
+                        ]
+                    {% endfor %}
+                };
+            } else if (e == 5) {
+                teacherArr = {
+                    {% for teacher in teacher5 %}
+                        url: "{{ MEDIA_URL }}{{ teacher.teach_img }}",
+                        names: [
+                            "{{ teacher.name1 }}",
+                            "{{ teacher.name2 }}",
+                            "{{ teacher.name3 }}",
+                            "{{ teacher.name4 }}",
+                            "{{ teacher.name5 }}",
+                            "{{ teacher.name6 }}",
+                        ]
+                    {% endfor %}
+                };
+            } else {
+                teacherArr = {
+                    {% for teacher in teacher6 %}
+                        url: "{{ MEDIA_URL }}{{ teacher.teach_img }}",
+                        names: [
+                            "{{ teacher.name1 }}",
+                            "{{ teacher.name2 }}",
+                            "{{ teacher.name3 }}",
+                            "{{ teacher.name4 }}",
+                            "{{ teacher.name5 }}",
+                            "{{ teacher.name6 }}",
+                        ]
+                    {% endfor %}
+                };
+            }
+            var str = '';
+
+            str += '   <img width="100%" src="' + teacherArr.url + '" alt="Alternate Text" />' +
+                '<p class="p1"> ' + teacherArr.names[0] + '</p>' +
+                '<p class="p2"> ' + teacherArr.names[1] + '</p> ' +
+                '<p class="p3"> ' + teacherArr.names[2] + '</p> ' +
+                '<p class="p4"> ' + teacherArr.names[3] + '</p> ' +
+                '<p class="p5"> ' + teacherArr.names[4] + '</p> ' +
+                '<p class="p6">' + teacherArr.names[5] + '</p>';
+
+            $("#roundFa").html(str)
+        }
+
+        initTea();
+
+        function closeTip() {
+            $(".mask").hide()
+        }
+
+        function showTip() {
+
+            $(".mask").show()
+        }
+
+        // 读书点亮生活
+        function initThree() {
+            var threeArr = [
+                {% for carousel in carousel1 %}
+                    {
+                        imgUrl: "{{ MEDIA_URL }}{{ carousel.course1_img }}",
+                        sth: "{{ carousel.course1_int|mycut|safe|linebreaksbr|cut:'<br>'}}",
+                    },
+                    {
+                        imgUrl: "{{ MEDIA_URL }}{{ carousel.course2_img }}",
+                        sth: "{{ carousel.course2_int|mycut|safe|linebreaksbr|cut:'<br>'}}",
+                    },
+                    {
+                        imgUrl: "{{ MEDIA_URL }}{{ carousel.course3_img }}",
+                        sth: "{{ carousel.course3_int|mycut|safe|linebreaksbr|cut:'<br>'}}",
+                    },
+                {% endfor %}
+
+                {% for carousel in carousel2 %}
+                    {
+                        imgUrl: "{{ MEDIA_URL }}{{ carousel.course1_img }}",
+                        sth: "{{ carousel.course1_int|mycut|safe|linebreaksbr|cut:'<br>'}}",
+                    },
+                    {
+                        imgUrl: "{{ MEDIA_URL }}{{ carousel.course2_img }}",
+                        sth: "{{ carousel.course2_int|mycut|safe|linebreaksbr|cut:'<br>'}}",
+                    },
+                    {
+                        imgUrl: "{{ MEDIA_URL }}{{ carousel.course3_img }}",
+                        sth: "{{ carousel.course3_int|mycut|safe|linebreaksbr|cut:'<br>'}}",
+                    },
+                {% endfor %}
+
+
+                {% for carousel in carousel3 %}
+                    {
+                        imgUrl: "{{ MEDIA_URL }}{{ carousel.course1_img }}",
+                        sth: "{{ carousel.course1_int|mycut|safe|linebreaksbr|cut:'<br>'}}",
+                    },
+                    {
+                        imgUrl: "{{ MEDIA_URL }}{{ carousel.course2_img }}",
+                        sth: "{{ carousel.course2_int|mycut|safe|linebreaksbr|cut:'<br>'}}",
+                    },
+                    {
+                        imgUrl: "{{ MEDIA_URL }}{{ carousel.course3_img }}",
+                        sth: "{{ carousel.course3_int|mycut|safe|linebreaksbr|cut:'<br>'}}",
+                    },
+                {% endfor %}
+
+
+                {% for carousel in carousel4 %}
+                    {
+                        imgUrl: "{{ MEDIA_URL }}{{ carousel.course1_img }}",
+                        sth: "{{ carousel.course1_int|mycut|safe|linebreaksbr|cut:'<br>'}}",
+                    },
+                    {
+                        imgUrl: "{{ MEDIA_URL }}{{ carousel.course2_img }}",
+                        sth: "{{ carousel.course2_int|mycut|safe|linebreaksbr|cut:'<br>'}}",
+                    },
+                    {
+                        imgUrl: "{{ MEDIA_URL }}{{ carousel.course3_img }}",
+                        sth: "{{ carousel.course3_int|mycut|safe|linebreaksbr|cut:'<br>'}}",
+                    },
+                {% endfor %}
+
+                {% for carousel in carousel5 %}
+                    {
+                        imgUrl: "{{ MEDIA_URL }}{{ carousel.course1_img }}",
+                        sth: "{{ carousel.course1_int|mycut|safe|linebreaksbr|cut:'<br>'}}",
+                    },
+                    {
+                        imgUrl: "{{ MEDIA_URL }}{{ carousel.course2_img }}",
+                        sth: "{{ carousel.course2_int|mycut|safe|linebreaksbr|cut:'<br>'}}",
+                    },
+                    {
+                        imgUrl: "{{ MEDIA_URL }}{{ carousel.course3_img }}",
+                        sth: "{{ carousel.course3_int|mycut|safe|linebreaksbr|cut:'<br>'}}",
+                    },
+                {% endfor %}
+            ];
+            var str = '';
+            threeArr.forEach((item, index) => {
+                str += "<div  class='swiper-slide' ><img class='img' src=" + item.imgUrl + "><div class='tipSpe'>" + item.sth + "</div></div>"
+            });
+            $("#threeFather").html(str);
+            var mineswiperz = new Swiper('.swiper-containerz', {
+                slidesPerView: 3,
+                spaceBetween: 50,
+                slidesPerGroup: 3,
+                loop: true, // 循环模式选项
+                autoplay: {
+                    delay: 2000,
+                    stopOnLastSlide: false,
+                    disableOnInteraction: true,
+                },
+                //           navigation: {
+                //     nextEl: '.swiper-button-next',
+                //     prevEl: '.swiper-button-prev',
+                //   },
+            });
+
+            $(".toLeft").click(function () {
+                mineswiperz.slidePrev();
+            });
+            $(".toRight").click(function () {
+                mineswiperz.slideNext()
+            })
+
+        }
+
+        initThree();
+
+
+        // 陪伴式教育
+        function initPlayfor() {
+            {% for accompany in accompanys %}
+                var roundArr = [
+                    {
+                        tea: "{{ accompany.accompany6 }}",
+                        pic: "{{ MEDIA_URL }}{{ accompany.accompany6_img }}",
+                        inner: "{{ accompany.accompany6_int|mycut|safe|linebreaksbr|cut:'<br>'}}"
+                    },
+                    {
+                        tea: "{{ accompany.accompany2 }}",
+                        pic: "{{ MEDIA_URL }}{{ accompany.accompany2_img }}",
+                        inner: "{{ accompany.accompany2_int|mycut|safe|linebreaksbr|cut:'<br>'}}"
+                    },
+                    {
+                        tea: "{{ accompany.accompany3 }}",
+                        pic: "{{ MEDIA_URL }}{{ accompany.accompany3_img }}",
+                        inner: "{{ accompany.accompany3_int|mycut|safe|linebreaksbr|cut:'<br>' }}"
+                    },
+                    {
+                        tea: "{{ accompany.accompany4 }}",
+                        pic: "{{ MEDIA_URL }}{{ accompany.accompany4_img }}",
+                        inner: "{{ accompany.accompany4_int|mycut|safe|linebreaksbr|cut:'<br>' }}"
+                    },
+                    {
+                        tea: "{{ accompany.accompany1 }}",
+                        pic: "{{ MEDIA_URL }}{{ accompany.accompany1_img }}",
+                        inner: "{{ accompany.accompany1_int|mycut|safe|linebreaksbr|cut:'<br>' }}"
+                    },
+                    {
+                        tea: "{{ accompany.accompany5 }}",
+                        pic: "{{ MEDIA_URL }}{{ accompany.accompany5_img }}",
+                        inner: "{{ accompany.accompany5_int|mycut|safe|linebreaksbr|cut:'<br>'}}"
+                    },
+
+                ];
+            {% endfor %}
+            var str = '';
+            roundArr.forEach((item, index) => {
+                str += "<div class='teachRound'><div class=' roundpro'><img src=" + item.pic + " alt=''></div> <div style='max-width:200px;text-align:center;color:#fff'><span style='font-size:24px'>" + item.tea + "</span><br>" + item.inner + " </div></div>"
+            });
+            $('#cnm').html(str)
+        }
+
+        initPlayfor();
+
+
+        function initLast() {
+            var mineswiperx = new Swiper('.swiper-container', {
+                paginationClickable: true,
+                observer: true, //修改swiper自己或子元素时，自动初始化swiper
+                observeParents: true, //修改swiper的父元素时，自动初始化swiper
+                slidesPerView: 3,
+                {#spaceBetween: 30,#}
+                slidesPerGroup: 3,
+                loop: true,
+                loopFillGroupWithBlank: true,
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                autoplay: {
+                    delay: 5000,
+                },
+            })
+        }
+
+        initLast();
+
+        $("#lastFx .swiper-slide").hover(function () {
+            $("#lastFx .swiper-slide-next").not(this).css("transform", "scale(1)");
+        });
+        $("#lastFx .swiper-slide").mouseout(function () {
+            $("#lastFx .swiper-slide-next").css("transform", "scale(1.2)");
+        })
+
+
+
+    </script>
+{% endblock %}
+

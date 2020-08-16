@@ -1,0 +1,70 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.lianxi {
+    width: 1400px;
+    height: 750px;
+    margin: auto;
+    /*background: url(../images/联系我们_03.png) no-repeat;*/
+    /*background-position: bottom;*/
+}
+
+.fanwei {
+    width: 100%;
+    height: 100%;
+    /*background: url(../images/联系我们_02.jpg) no-repeat;*/
+    /*background-position: right;*/
+
+}
+
+.lianxi .fanwei {
+    width: 1400px;
+    height: 755px;
+    margin: 0 auto;
+}
+
+.phtone img {
+    display: inline-block;
+    margin: 40px 0;
+}
+
+.concent-us {
+    overflow: hidden;
+    width: 560px;
+    height: 400px;
+    float: left;
+    box-shadow: 0 0 5px 5px #eee;
+}
+
+.fanwei .title {
+    font-size: 28px;
+    font-weight: bold;
+    font-family: "思源黑体";
+    margin-top: 40px;
+    margin-left: 20px;
+}
+
+.fanwei .words {
+    float: left;
+    margin-top: 30px;
+    margin-left: 20px;
+    font-size: 16px;
+    font-family: "思源黑体";
+    font-weight: normal;
+    line-height: 30px;
+    overflow: hidden;
+    /* 行间距没有调 */
+}
+
+.words2 {
+    margin-top: 30px;
+}
+
+.words p {
+    letter-spacing: 0.6ex;
+    margin-block-start: 0;
+    margin-block-end: 0;
+}
+

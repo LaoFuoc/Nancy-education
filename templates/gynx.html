@@ -1,0 +1,218 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block header %}
+    <title>南西教育官网</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/gynx.css' %}">
+{% endblock %}
+
+{% block contain %}
+    <!-- 学校简介 -->
+    <div class="situation">
+        <div class="row">
+            {% for about in abouts %}
+                <div class="situation-title">
+                    <h2 class="about_h2">
+                        {{ about.title1 }}
+
+                    </h2>
+                    <p class="about_p">
+                        {{ about.s_title1 }}
+                    </p>
+                    <p class="about_line" style="margin-bottom: 50px"></p>
+                </div>
+                <div class="situation-img">
+                    <img src="{{ MEDIA_URL }}{{ about.img }}" alt="">
+                </div>
+                <div class="situation-news">
+
+                    {{ about.sltuation|safe }}
+
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- 校长致辞 -->
+    <div class="president">
+        <div class="row">
+            {% for about in abouts %}
+                <div class="president-title">
+                </div>
+                <h2 class="about_h2" style="color: #ffffff; margin-top: 50px">
+                    {{ about.title2 }}
+                </h2>
+                <p class="about_p" style="color: #ffffff">
+                    {{ about.s_title2 }}
+                </p>
+                <p class="about_line"></p>
+                <!-- 致辞部分 -->
+                <div class="president-news">
+                    <!-- 左边 -->
+                    <div class="president-left">
+                        <div class="president-left-1">
+                            <p class="president-news-img">
+                                <img src="
+                    {{ MEDIA_URL }}{{ about.preimg1 }}
+                " alt="">
+                            </p>
+                            <div class="president-new1">
+
+                                {{ about.president1|safe }}
+
+                            </div>
+                        </div>
+                        <div class="president-left-2">
+                            <img src="{% static 'images/关于我们_11.jpg' %}" alt="">
+                            <img src="{% static 'images/关于我们_13.jpg' %}" alt="">
+                            <p style="text-align: center; color: #ffffff">2020年6月14日</p>
+                        </div>
+                    </div>
+
+                    <!-- 右边 -->
+                    <div class="president-right">
+                        <div class="president-right-1">
+                            <p class="president-news-img">
+                                <img src="
+                    {{ MEDIA_URL }}{{ about.preimg2 }}
+                " alt="">
+                            </p>
+                            <div class="president-new2">
+
+                                {{ about.president2|safe }}
+
+                            </div>
+                        </div>
+                        <div class="president-left-2">
+                            <img src="{% static 'images/关于我们_11.jpg' %}" alt="">
+                            <img src="{% static 'images/关于我们_13.jpg' %}" alt="">
+                            <p style="text-align: center;color: #ffffff">2020年6月14日</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <!-- 企业文化 -->
+    <div class="corporate">
+        {% for enterprise in enterprises %}
+            <div class="row">
+            <div class="corporate-title">
+                <h2 class="about_h2">
+                    {{ enterprise.title }}
+                </h2>
+                <p class="about_p">
+                    {{ enterprise.s_title }}
+                </p>
+                <p class="about_line" style="margin-bottom: 50px"></p>
+            </div>
+            <div class="corporate_news">
+                <div class="corporate_news_left">
+                    <div class="corporate_new_2">
+                        <h2 class="corporate_h2_l">
+                            {{ enterprise.corpcrate3 }}
+                        </h2>
+                        <p class="corporate_p">
+                            {{ enterprise.corpcrate4|safe }}
+                        </p>
+                    </div>
+                    <div class="corporate_new_4">
+                        <h2 class="corporate_h2_l">
+                            {{ enterprise.corpcrate7 }}
+                        </h2>
+                        <p class="corporate_p">
+                            {{ enterprise.corpcrate8|safe }}
+
+                        </p>
+                    </div>
+                </div>
+                <div class="corporate_news_right">
+                    <div class="corporate_new_1">
+                        <h2 class="corporate_h2_r">
+                            {{ enterprise.corpcrate1 }}
+                        </h2>
+                        <p class="corporate_p">
+                            {{ enterprise.corpcrate2|safe }}
+                        </p>
+                    </div>
+                    <div class="corporate_new_3">
+                        <h2 class="corporate_h2_r">
+                            {{ enterprise.corpcrate5 }}
+                        </h2>
+                        <p class="corporate_p">
+                            {{ enterprise.corpcrate6|safe }}
+                        </p>
+
+                    </div>
+                    <div class="corporate_new_5">
+                        <h2 class="corporate_h2_r">
+                            {{ enterprise.corpcrate9 }}
+
+                        </h2>
+                        <p class="corporate_p">
+
+                            {{ enterprise.corpcrate10|safe }}
+
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+
+    {#    底部轮播图#}
+    {% for bt in bt_carousel1 %}
+        <h2 class="about_h2">{{ bt.title }}</h2>
+        <p class="about_p">{{ bt.s_title }}</p>
+        <p class="about_line"></p>
+    {% endfor %}
+    <div class="lastSwipe">
+        <div class="swiper-container" style="position:relative" id="ks">
+            <div class="swiper-wrapper" id="lastFx">
+                {% for bt in bt_carousel1 %}
+                    <div class="swiper-slide"><img class='img' src="{{ MEDIA_URL }}{{ bt.bt_carousel_img1 }}"></div>
+                    <div class="swiper-slide"><img class='img' src="{{ MEDIA_URL }}{{ bt.bt_carousel_img2 }}"></div>
+                    <div class="swiper-slide"><img class='img' src="{{ MEDIA_URL }}{{ bt.bt_carousel_img3 }}"></div>
+                {% endfor %}
+            </div>
+            <!-- 如果需要分页器 -->
+            <div class="swiper-pagination" style="z-index：999; width:100%;margin-top: 50px;"></div>
+        </div>
+    </div>
+    <script>
+        function initLast() {
+            var mineswiperx = new Swiper('.swiper-container', {
+                paginationClickable: true,
+                observer: true, //修改swiper自己或子元素时，自动初始化swiper
+                observeParents: true, //修改swiper的父元素时，自动初始化swiper
+                slidesPerView: 3,
+                {#spaceBetween: 30,#}
+                slidesPerGroup: 3,
+                loop: true,
+                loopFillGroupWithBlank: true,
+            })
+        }
+
+        initLast()
+
+        $("#lastFx .swiper-slide-active").hover(function () {
+            $("#lastFx .swiper-slide-next").css("transform", "scale(1)");
+        })
+        $("#lastFx .swiper-slide-active").mouseout(function () {
+            $("#lastFx .swiper-slide-next").css("transform", "scale(1.2)");
+        })
+
+        $("#lastFx .swiper-slide").hover(function () {
+            $("#lastFx .swiper-slide-next").css("transform", "scale(1)");
+        })
+        $("#lastFx .swiper-slide").mouseout(function () {
+            $("#lastFx .swiper-slide-next").css("transform", "scale(1.2)");
+        })
+
+        $("#lastFx .swiper-slide-next").hover(function () {
+            $("#lastFx .swiper-slide-next").css("transform", "scale(1.2)");
+        })
+    </script>
+{% endblock %}

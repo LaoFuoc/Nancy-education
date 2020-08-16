@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block header %}
+    <title>南西教育官网</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/lxwm.css' %}">
+{% endblock %}
+
+{% block contain %}
+    {% load static %}
+    <div id="" class="lianxi">
+        {% for contact in contacts %}
+            <div id="" class="fanwei" style="background: url(
+                    {{ MEDIA_URL }}{{ contact.contact_img }}) no-repeat; background-position: right;">
+        {% endfor %}
+
+        <div id="" class="phtone">
+            <img src="{% static 'images/联系我们_01.jpg' %}" alt="">
+
+        </div>
+
+        <div class="concent-us">
+            {% for contact in contacts %}
+                <div id="" class="title">
+                    {{ contact.title }}
+                </div>
+                <div id="" class="words">
+                    <div id="" class="words1">
+                        <p>{{ contact.address1 }}</p>
+                        <p>{{ contact.address2 }}</p>
+                        <p>{{ contact.telephone }}</p>
+                    </div>
+                    <div id="" class="words2">
+                        <p>{{ contact.information }}</p>
+                        <p>{{ contact.contact_number }}</p>
+                        <p>{{ contact.email }}</p>
+                        <p>{{ contact.wechat }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        </div>
+    </div>
+    {#    底部轮播图#}
+    {% for bt in bt_carousel1 %}
+        <h2 class="about_h2">{{ bt.title }}</h2>
+        <p class="about_p">{{ bt.s_title }}</p>
+        <p class="about_line"></p>
+    {% endfor %}
+    <div class="lastSwipe">
+        <div class="swiper-container" style="position:relative" id="ks">
+            <div class="swiper-wrapper" id="lastFx">
+                {% for bt in bt_carousel1 %}
+                    <div class="swiper-slide"><img class='img' src="{{ MEDIA_URL }}{{ bt.bt_carousel_img1 }}"></div>
+                    <div class="swiper-slide"><img class='img' src="{{ MEDIA_URL }}{{ bt.bt_carousel_img2 }}"></div>
+                    <div class="swiper-slide"><img class='img' src="{{ MEDIA_URL }}{{ bt.bt_carousel_img3 }}"></div>
+                {% endfor %}
+            </div>
+            <!-- 如果需要分页器 -->
+            <div class="swiper-pagination" style="z-index：999; width:100%;margin-top: 50px;"></div>
+        </div>
+    </div>
+    <script>
+        function initLast() {
+            var mineswiperx = new Swiper('.swiper-container', {
+                paginationClickable: true,
+                observer: true, //修改swiper自己或子元素时，自动初始化swiper
+                observeParents: true, //修改swiper的父元素时，自动初始化swiper
+                slidesPerView: 3,
+                {#spaceBetween: 30,#}
+                slidesPerGroup: 3,
+                loop: true,
+                loopFillGroupWithBlank: true,
+            })
+        }
+
+        initLast()
+        $("#lastFx .swiper-slide-active").hover(function () {
+            $("#lastFx .swiper-slide-next").css("transform", "scale(1)");
+        })
+        $("#lastFx .swiper-slide-active").mouseout(function () {
+            $("#lastFx .swiper-slide-next").css("transform", "scale(1.2)");
+        })
+
+        $("#lastFx .swiper-slide").hover(function () {
+            $("#lastFx .swiper-slide-next").css("transform", "scale(1)");
+        })
+        $("#lastFx .swiper-slide").mouseout(function () {
+            $("#lastFx .swiper-slide-next").css("transform", "scale(1.2)");
+        })
+
+        $("#lastFx .swiper-slide-next").hover(function () {
+            $("#lastFx .swiper-slide-next").css("transform", "scale(1.2)");
+        })
+    </script>
+{% endblock %}
