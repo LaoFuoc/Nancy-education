@@ -16,67 +16,70 @@ class IndexView(View):
     """首页"""
 
     def get(self, request):
-        try:
-            carousels = Top_Carousel.objects.all()
+        # try:
+        carousels = Top_Carousel.objects.all()
 
-            choose1 = Choose_us.objects.filter(choose='first')
-            choose2 = Choose_us.objects.filter(choose='second')
-            choose3 = Choose_us.objects.filter(choose='third')
-            tea_advs = Teacher_select.objects.all()
-            six_teachs = Six_Teach.objects.all()
-            teacher1 = Nancy_Teacher.objects.filter(carousel='first')
-            teacher2 = Nancy_Teacher.objects.filter(carousel='second')
-            teacher3 = Nancy_Teacher.objects.filter(carousel='third')
-            teacher4 = Nancy_Teacher.objects.filter(carousel='fourth')
-            teacher5 = Nancy_Teacher.objects.filter(carousel='fifth')
-            teacher6 = Nancy_Teacher.objects.filter(carousel='sixth')
+        choose1 = Choose_us.objects.filter(choose='first')
+        choose2 = Choose_us.objects.filter(choose='second')
+        choose3 = Choose_us.objects.filter(choose='third')
+        tea_advs = Teacher_select.objects.all()
+        guanggao = GuangGao.objects.all()
+        six_teachs = Six_Teach.objects.all()
+        teacher1 = Nancy_Teacher.objects.filter(carousel='first')
+        teacher2 = Nancy_Teacher.objects.filter(carousel='second')
+        teacher3 = Nancy_Teacher.objects.filter(carousel='third')
+        teacher4 = Nancy_Teacher.objects.filter(carousel='fourth')
+        teacher5 = Nancy_Teacher.objects.filter(carousel='fifth')
+        teacher6 = Nancy_Teacher.objects.filter(carousel='sixth')
 
-            carousel1 = Reading_Life.objects.filter(carousel='first')
-            carousel2 = Reading_Life.objects.filter(carousel='second')
-            carousel3 = Reading_Life.objects.filter(carousel='third')
-            carousel4 = Reading_Life.objects.filter(carousel='fourth')
-            carousel5 = Reading_Life.objects.filter(carousel='fifth')
+        carousel1 = Reading_Life.objects.filter(carousel='first')
+        carousel2 = Reading_Life.objects.filter(carousel='second')
+        carousel3 = Reading_Life.objects.filter(carousel='third')
+        carousel4 = Reading_Life.objects.filter(carousel='fourth')
+        carousel5 = Reading_Life.objects.filter(carousel='fifth')
 
-            accompanys = Accompanying.objects.all()
-            bt_carousel1 = Bottom_carousel.objects.filter(carousel='first')
-            bt_carousel2 = Bottom_carousel.objects.filter(carousel='second')
-            bt_carousel3 = Bottom_carousel.objects.filter(carousel='third')
-            bt_carousel4 = Bottom_carousel.objects.filter(carousel='fourth')
-            bt_carousel5 = Bottom_carousel.objects.filter(carousel='fifth')
+        accompanys = Accompanying.objects.all()
+        bt_carousel1 = Bottom_carousel.objects.filter(carousel='first')
+        bt_carousel2 = Bottom_carousel.objects.filter(carousel='second')
+        bt_carousel3 = Bottom_carousel.objects.filter(carousel='third')
+        bt_carousel4 = Bottom_carousel.objects.filter(carousel='fourth')
+        bt_carousel5 = Bottom_carousel.objects.filter(carousel='fifth')
 
-            bt_navs = Bt_Nav.objects.all()
+        bt_navs = Bt_Nav.objects.all()
 
-            context = {
-                'carousels': carousels,
-                'choose1': choose1,
-                'choose2': choose2,
-                'choose3': choose3,
-                'six_teachs': six_teachs,
-                'tea_advs': tea_advs,
-                'teacher1': teacher1,
-                'teacher2': teacher2,
-                'teacher3': teacher3,
-                'teacher4': teacher4,
-                'teacher5': teacher5,
-                'teacher6': teacher6,
-                'carousel1': carousel1,
-                'carousel2': carousel2,
-                'carousel3': carousel3,
-                'carousel4': carousel4,
-                'carousel5': carousel5,
-                'accompanys': accompanys,
-                'bt_carousel1': bt_carousel1,
-                'bt_carousel2': bt_carousel2,
-                'bt_carousel3': bt_carousel3,
-                'bt_carousel4': bt_carousel4,
-                'bt_carousel5': bt_carousel5,
-                'bt_navs':bt_navs
-            }
-            print('发起了get请求')
-            return render(request, 'index.html', context)
-        except BaseException as e:
-            print('请求失败')
-            return render(request, 'index.html', {})
+        context = {
+            'carousels': carousels,
+            'choose1': choose1,
+            'choose2': choose2,
+            'choose3': choose3,
+            'six_teachs': six_teachs,
+            'guanggao':guanggao,
+            'tea_advs': tea_advs,
+            'teacher1': teacher1,
+            'teacher2': teacher2,
+            'teacher3': teacher3,
+            'teacher4': teacher4,
+            'teacher5': teacher5,
+            'teacher6': teacher6,
+            'carousel1': carousel1,
+            'carousel2': carousel2,
+            'carousel3': carousel3,
+            'carousel4': carousel4,
+            'carousel5': carousel5,
+            'accompanys': accompanys,
+            'bt_carousel1': bt_carousel1,
+            'bt_carousel2': bt_carousel2,
+            'bt_carousel3': bt_carousel3,
+            'bt_carousel4': bt_carousel4,
+            'bt_carousel5': bt_carousel5,
+            'bt_navs': bt_navs
+        }
+        print('发起了get请求')
+        return render(request, 'index.html', context)
+
+    # except BaseException as e:
+    #     print('请求失败')
+    #     return render(request, 'index.html', {})
 
     def post(self, request):
         # 获取提交的信息
@@ -184,6 +187,7 @@ class ProgramingView(View):
         try:
             carousels = Top_Carousel.objects.all()
             programmings = Programming.objects.all()
+            guanggao = GuangGao.objects.all()
             why_chooses = Why_Choose.objects.all()
             tea_advs = Teacher_select.objects.all()
             first_class = First_Class.objects.all()
@@ -193,11 +197,14 @@ class ProgramingView(View):
             first_match3 = First_Match.objects.filter(carousel='third')
             first_match4 = First_Match.objects.filter(carousel='fourth')
             bt_carousel1 = Program_Bt.objects.all()
+            advertising = Advertising2.objects.all()
             bt_navs = Bt_Nav.objects.all()
             context = {
                 'carousels': carousels,
+                'guanggao':guanggao,
                 'programmings': programmings,
                 'why_chooses': why_chooses,
+                'advertising':advertising,
                 'tea_advs': tea_advs,
                 'first_class': first_class,
                 'class_teach': class_teach,
@@ -245,7 +252,7 @@ class DynamicView(View):
                 category = 'hd'
                 all_news = Dynamic.objects.filter(category=category).order_by('-add_time')
 
-            tags = Tag.objects.all()#所有的标签
+            tags = Tag.objects.all()  # 所有的标签
             # 获取关键字
             tag = request.GET.get('tag')
             articles = []
@@ -269,8 +276,8 @@ class DynamicView(View):
                 'carousels': carousels,
                 'dynamics': dynamics,
                 'category': category,
-                'tags':tags,
-                'articles':articles,
+                'tags': tags,
+                'articles': articles,
                 'all_news': all_news,
                 'bt_carousel1': bt_carousel1,
                 'bt_navs': bt_navs
@@ -342,5 +349,3 @@ class ContactView(View):
         except BaseException as e:
             print('请求失败')
             return render(request, 'lxwm.html', {})
-
-

@@ -31,7 +31,7 @@
 
 .situation-news {
 	width: 650px;
-	height: 400px;
+	min-height: 310px;
 	background: #5c65cd;
 	float: right;
 	margin-right: 140px;

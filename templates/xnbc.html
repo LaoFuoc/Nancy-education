@@ -35,11 +35,15 @@
     </div>
 
     {#        广告部分#}
+{% for g in guanggao %}
     <div class="mask" v-if="showMask">
         <div class="poupCon fr_r_b">
             <img src="{% static 'images/closeIT.png' %}" alt="" class="closeIT" onclick="closeTip()">
-            <img src="{% for tea_adv in tea_advs %}{{ MEDIA_URL }}{{ tea_adv.advertising2_img }}{% endfor %}" alt=""
-                 class="tipLeft">
+            {% for adv in advertising %}
+                <img src="{{ MEDIA_URL }}{{ g.advertising_img2 }}" alt=""
+                     class="tipLeft">
+            {% endfor %}
+
             <form class="formGroupX  fr_c_c" id="up">
                 <div style="margin-bottom:20px; width:80%">
                     <div style="margin-bottom:10px">联系方式：</div>
@@ -76,9 +80,12 @@
         })
     </script>
     <div class="contactUs" style="margin-top: 20px">
-        <img src="{% static 'images/contactUs.jpg' %}" alt="">
-        <div class="conUs" onclick="showTip()">立即咨询</div>
+
+            <img src="{{ MEDIA_URL }}{{ g.img2 }}" alt="">
+            <div class="conUs" onclick="showTip()">立即咨询</div>
+
     </div>
+    {% endfor %}
     <!-- 为什么选择小南编程 -->
     <div class="why">
         {% for why_choose in why_chooses %}

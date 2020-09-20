@@ -32,15 +32,15 @@
             </div>
         </div>
     </div>
+{% for g in guanggao %}
     <div class="contactUs">
-        <img src="{% static 'images/contactUs.jpg' %}" alt/>
-        <div class="conUs" onclick="showTip()">立即咨询</div>
+            <img src="{{ MEDIA_URL }}{{ g.img1 }}" alt/>
+            <div class="conUs" onclick="showTip()">立即咨询</div>
     </div>
     <div class="mask" v-if="showMask">
         <div class="poupCon fr_r_b">
             <img src="{% static 'images/closeIT.png' %}" alt="" class="closeIT" onclick="closeTip()">
-            <img src="{% for tea_adv in tea_advs %}{{ MEDIA_URL }}{{ tea_adv.advertising1_img }}{% endfor %}
-            " alt="" class="tipLeft">
+            <img src="{{ MEDIA_URL }}{{ g.advertising_img1 }}" alt="" class="tipLeft">
             <form class="formGroupX  fr_c_c" id="myform">
                 <div style="margin-bottom:20px; width:80%">
                     <div style="margin-bottom:10px">学生姓名：</div>
@@ -62,6 +62,7 @@
             </form>
         </div>
     </div>
+    {% endfor %}
 
     <div class="choseTiTle fr_c_c" style="margin-top:20px;">
         {% for six_teach in six_teachs %}
@@ -75,28 +76,21 @@
                 <img src="{% static 'images/sixStep.png' %}" alt style="position:absolute;width:100%;hieght:100%"/>
                 <div class="stepCon">
                     {{ six_teach.six_teach3 }}
-                    <p>
-                        {{ six_teach.six_teach4 }}</p>
                 </div>
                 <div class="stepCon">
                     {{ six_teach.six_teach5 }}
-                    <p>{{ six_teach.six_teach6 }}</p>
                 </div>
                 <div class="stepCon">
                     {{ six_teach.six_teach7 }}
-                    <p>{{ six_teach.six_teach8 }}</p>
                 </div>
                 <div class="stepCon">
                     {{ six_teach.six_teach9 }}
-                    <p>{{ six_teach.six_teach10 }}</p>
                 </div>
                 <div class="stepCon">
                     {{ six_teach.six_teach11 }}
-                    <p>{{ six_teach.six_teach12 }}</p>
                 </div>
                 <div class="stepCon">
                     {{ six_teach.six_teach1 }}
-                    <p>{{ six_teach.six_teach2 }}</p>
                 </div>
             </div>
         {% endfor %}
@@ -131,21 +125,16 @@
         {% endfor %}
     </div>
     {% for tea_adv in tea_advs %}
-
-
-
         <div class="choseTiTle fr_c_c" style="margin-top:40px;">
             {{ tea_adv.title }}
             <p>{{ tea_adv.s_title }}</p>
             <img src="{% static 'images/about_line.jpg' %}" alt class="underLine"/>
         </div>
         <div class="selectPart">
-            <img src="{% static 'images/选拔.png' %}" alt/>
+            <img src="{{ MEDIA_URL }}{{ tea_adv.img1 }}" alt/>
         </div>
         <div class="contactUs">
-            <a href="{{ tea_adv.urls }}"><img src="{% static 'images/contactUs.jpg' %}" alt/></a>
-            {#        <div class="conUs" onclick="showTip()">立即咨询</div>#}
-
+            <a href="{{ tea_adv.urls }}"><img src="{{ MEDIA_URL }}{{ tea_adv.img2 }}" alt/></a>
         </div>
     {% endfor %}
     {#    读书点亮生活#}
@@ -256,40 +245,40 @@
             if (e == 1) {
                 sixarr = [
                     {% for cho in choose1 %}
-                        {pic: "{{MEDIA_URL}}{{ cho.choose_img1 }}", name: "{{ cho.choose_name1 }}"},
-                        {pic: "{{MEDIA_URL}}{{ cho.choose_img2 }}", name: "{{ cho.choose_name2 }}"},
-                        {pic: "{{MEDIA_URL}}{{ cho.choose_img3 }}", name: "{{ cho.choose_name3 }}"},
-                        {pic: "{{MEDIA_URL}}{{ cho.choose_img4 }}", name: "{{ cho.choose_name4 }}"},
-                        {pic: "{{MEDIA_URL}}{{ cho.choose_img5 }}", name: "{{ cho.choose_name5 }}"},
-                        {pic: "{{MEDIA_URL}}{{ cho.choose_img6 }}", name: "{{ cho.choose_name6 }}"},
+                        {pic: "{{MEDIA_URL}}{{ cho.choose_img1 }}"},
+                        {pic: "{{MEDIA_URL}}{{ cho.choose_img2 }}"},
+                        {pic: "{{MEDIA_URL}}{{ cho.choose_img3 }}"},
+                        {pic: "{{MEDIA_URL}}{{ cho.choose_img4 }}"},
+                        {pic: "{{MEDIA_URL}}{{ cho.choose_img5 }}"},
+                        {pic: "{{MEDIA_URL}}{{ cho.choose_img6 }}"},
                     {% endfor %}
                 ];
             } else if (e == 2) {
                 sixarr = [
                     {% for cho in choose2 %}
-                        {pic: "{{MEDIA_URL}}{{ cho.choose_img1 }}", name: "{{ cho.choose_name1 }}"},
-                        {pic: "{{MEDIA_URL}}{{ cho.choose_img2 }}", name: "{{ cho.choose_name2 }}"},
-                        {pic: "{{MEDIA_URL}}{{ cho.choose_img3 }}", name: "{{ cho.choose_name3 }}"},
-                        {pic: "{{MEDIA_URL}}{{ cho.choose_img4 }}", name: "{{ cho.choose_name4 }}"},
-                        {pic: "{{MEDIA_URL}}{{ cho.choose_img5 }}", name: "{{ cho.choose_name5 }}"},
-                        {pic: "{{MEDIA_URL}}{{ cho.choose_img6 }}", name: "{{ cho.choose_name6 }}"},
+                        {pic: "{{MEDIA_URL}}{{ cho.choose_img1 }}"},
+                        {pic: "{{MEDIA_URL}}{{ cho.choose_img2 }}"},
+                        {pic: "{{MEDIA_URL}}{{ cho.choose_img3 }}"},
+                        {pic: "{{MEDIA_URL}}{{ cho.choose_img4 }}"},
+                        {pic: "{{MEDIA_URL}}{{ cho.choose_img5 }}"},
+                        {pic: "{{MEDIA_URL}}{{ cho.choose_img6 }}"},
                     {% endfor %}
                 ]
             } else {
                 sixarr = [
                     {% for cho in choose3 %}
-                        {pic: "{{MEDIA_URL}}{{ cho.choose_img1 }}", name: "{{ cho.choose_name1 }}"},
-                        {pic: "{{MEDIA_URL}}{{ cho.choose_img2 }}", name: "{{ cho.choose_name2 }}"},
-                        {pic: "{{MEDIA_URL}}{{ cho.choose_img3 }}", name: "{{ cho.choose_name3 }}"},
-                        {pic: "{{MEDIA_URL}}{{ cho.choose_img4 }}", name: "{{ cho.choose_name4 }}"},
-                        {pic: "{{MEDIA_URL}}{{ cho.choose_img5 }}", name: "{{ cho.choose_name5 }}"},
-                        {pic: "{{MEDIA_URL}}{{ cho.choose_img6 }}", name: "{{ cho.choose_name6 }}"},
+                        {pic: "{{MEDIA_URL}}{{ cho.choose_img1 }}"},
+                        {pic: "{{MEDIA_URL}}{{ cho.choose_img2 }}"},
+                        {pic: "{{MEDIA_URL}}{{ cho.choose_img3 }}"},
+                        {pic: "{{MEDIA_URL}}{{ cho.choose_img4 }}"},
+                        {pic: "{{MEDIA_URL}}{{ cho.choose_img5 }}"},
+                        {pic: "{{MEDIA_URL}}{{ cho.choose_img6 }}"},
                     {% endfor %}
                 ]
             }
             var str = "";
             sixarr.forEach((item, index) => {
-                    str += "<div class='sixPartItem fl fr_c_c' ><img src='" + item.pic + "' alt />" + item.name + "</div>"
+                    str += "<div class='sixPartItem fl fr_c_c' ><img src='" + item.pic + "' alt /></div>"
                 }
             );
             $('.sixMain').html(str)
@@ -298,18 +287,18 @@
         function initPart() {
             var sixArr = [
                 {% for cho in choose1 %}
-                    {pic: "{{MEDIA_URL}}{{ cho.choose_img1 }}", name: "{{ cho.choose_name1 }}"},
-                    {pic: "{{MEDIA_URL}}{{ cho.choose_img2 }}", name: "{{ cho.choose_name2 }}"},
-                    {pic: "{{MEDIA_URL}}{{ cho.choose_img3 }}", name: "{{ cho.choose_name3 }}"},
-                    {pic: "{{MEDIA_URL}}{{ cho.choose_img4 }}", name: "{{ cho.choose_name4 }}"},
-                    {pic: "{{MEDIA_URL}}{{ cho.choose_img5 }}", name: "{{ cho.choose_name5 }}"},
-                    {pic: "{{MEDIA_URL}}{{ cho.choose_img6 }}", name: "{{ cho.choose_name6 }}"},
+                    {pic: "{{MEDIA_URL}}{{ cho.choose_img1 }}"},
+                    {pic: "{{MEDIA_URL}}{{ cho.choose_img2 }}"},
+                    {pic: "{{MEDIA_URL}}{{ cho.choose_img3 }}"},
+                    {pic: "{{MEDIA_URL}}{{ cho.choose_img4 }}"},
+                    {pic: "{{MEDIA_URL}}{{ cho.choose_img5 }}"},
+                    {pic: "{{MEDIA_URL}}{{ cho.choose_img6 }}"},
                 {% endfor %}
             ];
 
             var str = "";
             sixArr.forEach((item, index) => {
-                    str += "<div class='sixPartItem fl fr_c_c' ><img src='" + item.pic + "' alt />" + item.name + "</div>"
+                    str += "<div class='sixPartItem fl fr_c_c' ><img src='" + item.pic + "' alt /></div>"
                 }
             );
             $('.sixMain').html(str)
@@ -572,39 +561,33 @@
                     {
                         tea: "{{ accompany.accompany6 }}",
                         pic: "{{ MEDIA_URL }}{{ accompany.accompany6_img }}",
-                        inner: "{{ accompany.accompany6_int|mycut|safe|linebreaksbr|cut:'<br>'}}"
                     },
                     {
                         tea: "{{ accompany.accompany2 }}",
                         pic: "{{ MEDIA_URL }}{{ accompany.accompany2_img }}",
-                        inner: "{{ accompany.accompany2_int|mycut|safe|linebreaksbr|cut:'<br>'}}"
                     },
                     {
                         tea: "{{ accompany.accompany3 }}",
                         pic: "{{ MEDIA_URL }}{{ accompany.accompany3_img }}",
-                        inner: "{{ accompany.accompany3_int|mycut|safe|linebreaksbr|cut:'<br>' }}"
                     },
                     {
                         tea: "{{ accompany.accompany4 }}",
                         pic: "{{ MEDIA_URL }}{{ accompany.accompany4_img }}",
-                        inner: "{{ accompany.accompany4_int|mycut|safe|linebreaksbr|cut:'<br>' }}"
                     },
                     {
                         tea: "{{ accompany.accompany1 }}",
                         pic: "{{ MEDIA_URL }}{{ accompany.accompany1_img }}",
-                        inner: "{{ accompany.accompany1_int|mycut|safe|linebreaksbr|cut:'<br>' }}"
                     },
                     {
                         tea: "{{ accompany.accompany5 }}",
                         pic: "{{ MEDIA_URL }}{{ accompany.accompany5_img }}",
-                        inner: "{{ accompany.accompany5_int|mycut|safe|linebreaksbr|cut:'<br>'}}"
                     },
 
                 ];
             {% endfor %}
             var str = '';
             roundArr.forEach((item, index) => {
-                str += "<div class='teachRound'><div class=' roundpro'><img src=" + item.pic + " alt=''></div> <div style='max-width:200px;text-align:center;color:#fff'><span style='font-size:24px'>" + item.tea + "</span><br>" + item.inner + " </div></div>"
+                str += "<div class='teachRound'><div class=' roundpro'><img src=" + item.pic + " alt=''></div> <div style='max-width:200px;text-align:center;color:#fff'><span style='font-size:24px'>" + item.tea + "</span><br><p style='margin-top:84px'></p></div></div>"
             });
             $('#cnm').html(str)
         }
@@ -640,7 +623,6 @@
         $("#lastFx .swiper-slide").mouseout(function () {
             $("#lastFx .swiper-slide-next").css("transform", "scale(1.2)");
         })
-
 
 
     </script>

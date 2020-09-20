@@ -28,9 +28,10 @@ class Choose_us(models.Model):
     category_choices = (('first', '选择我们一'), ('second', '选择我们二'), ('third', '选择我们三'))
     choose = models.ImageField(verbose_name='选择我们', choices=category_choices, upload_to='choose_teach')
     title_img = models.ImageField(verbose_name='选择我们方块图', upload_to='choose_teach')
+    # choose_img = models.ImageField(verbose_name="图片(6合一大图)",upload_to='choose_teach')
     for i in range(1, 7):
         locals()['choose_img' + str(i)] = models.ImageField(verbose_name='图片{}'.format(i), upload_to='choose_teach')
-        locals()['choose_name' + str(i)] = models.CharField(verbose_name='名字{}'.format(i), max_length=20, default='小明')
+        # locals()['choose_name' + str(i)] = models.CharField(verbose_name='名字{}'.format(i), max_length=20, default='小明')
 
     class Meta:
         verbose_name = '1首页-2选择我们'
@@ -40,7 +41,17 @@ class Choose_us(models.Model):
         return self.s_title
 
 
-# 点击咨询
+class GuangGao(models.Model):
+    img1 = models.ImageField(verbose_name="首页-广告栏图片", upload_to='choose_teach', blank=True, null=True)
+    advertising_img1 = models.ImageField(verbose_name='点击咨询-背景图片', upload_to='advertising', blank=True, null=True)
+    img2 = models.ImageField(verbose_name="小南编程-广告栏图片", upload_to='choose_teach', blank=True, null=True)
+    advertising_img2 = models.ImageField(verbose_name='立即领取-背景图片', upload_to='advertising', blank=True, null=True)
+
+    class Meta:
+        verbose_name = "广告栏图片-背景设置(立即咨询+点击领取)"
+        verbose_name_plural = verbose_name
+
+# 立即咨询
 class Advertising1(models.Model):
     name = models.CharField(verbose_name='学生姓名', max_length=20)
     phone = models.CharField(verbose_name='联系方式', max_length=50)
@@ -53,7 +64,7 @@ class Advertising1(models.Model):
         verbose_name_plural = verbose_name
 
 
-# 点击领取
+# 小南编程-点击领取
 class Advertising2(models.Model):
     name = models.CharField(verbose_name='小朋友姓名', max_length=20)
     phone = models.CharField(verbose_name='联系方式', max_length=50)
@@ -71,22 +82,16 @@ class Six_Teach(models.Model):
     s_title = models.CharField(verbose_name='小标题', default='SIX STEP TEACHING METHOD', max_length=100)
 
     six_teach1 = models.CharField(verbose_name='标题1', default='课后跟踪', max_length=20)
-    six_teach2 = models.CharField(verbose_name='内容', default='AFTER CLASS TRACKING', max_length=100)
 
     six_teach3 = models.CharField(verbose_name='标题2', default='情景导入', max_length=20)
-    six_teach4 = models.CharField(verbose_name='内容', default='SCENARIO IMPORT', max_length=100)
 
     six_teach5 = models.CharField(verbose_name='标题3', default='知识梳理', max_length=20)
-    six_teach6 = models.CharField(verbose_name='内容', default='KNOWLEDGE SORTING', max_length=100)
 
     six_teach7 = models.CharField(verbose_name='标题4', default='例题精讲', max_length=20)
-    six_teach8 = models.CharField(verbose_name='内容', default='EXEPLIFICATION', max_length=100)
 
     six_teach9 = models.CharField(verbose_name='标题5', default='拓展巩固', max_length=20)
-    six_teach10 = models.CharField(verbose_name='内容', default='EXPANSION ANDCONS OLIDATION', max_length=100)
 
     six_teach11 = models.CharField(verbose_name='标题6', default='落实效果', max_length=20)
-    six_teach12 = models.CharField(verbose_name='内容', default='IMPLEMENT TATION EFFECT', max_length=100)
 
     class Meta:
         verbose_name = '1首页-3南西六步教学法'
@@ -120,12 +125,12 @@ class Nancy_Teacher(models.Model):
 class Teacher_select(models.Model):
     title = models.CharField(verbose_name='标题', default='教师选拔', max_length=20)
     s_title = models.CharField(verbose_name='小标题', default='TEACHER SELECTION', max_length=100)
-    advertising1_img = models.ImageField(verbose_name='点击咨询广告图片', upload_to='advertising')
+    img1 = models.ImageField(verbose_name="图片一", upload_to='advertising', blank=True, null=True)
+    img2 = models.ImageField(verbose_name="图片二", upload_to='advertising', blank=True, null=True)
     urls = models.CharField(verbose_name='广告链接', default='#', max_length=100)
-    advertising2_img = models.ImageField(verbose_name='立即领取广告图片', upload_to='advertising')
 
     class Meta:
-        verbose_name = '广告--链接及背景'
+        verbose_name = '1首页-5教师选拔'
         verbose_name_plural = verbose_name
 
 
@@ -139,7 +144,7 @@ class Reading_Life(models.Model):
                         ('fifth', '读书点亮生活五'))
     carousel = models.ImageField(verbose_name='读书点亮生活轮播图', choices=category_choices, default='first',
                                  upload_to='read_life')
-    course1_img = models.ImageField(verbose_name='图片一', upload_to='read_life',)
+    course1_img = models.ImageField(verbose_name='图片一', upload_to='read_life', )
     course1_int = RichTextUploadingField(verbose_name='介绍一', default='这是需要总监定稿1')
 
     course2_img = models.ImageField(verbose_name='图片二', upload_to='read_life')
@@ -161,32 +166,32 @@ class Accompanying(models.Model):
     accompany1 = models.CharField(verbose_name='第一', default='入学测试', max_length=100)
     accompany1_img = models.ImageField(verbose_name='图片', upload_to='read_life')
     accompany1_int = RichTextUploadingField(verbose_name='介绍',
-                                      default='Lorem ipsum Lorem ipsum dolor sit amet consectetur adipisicing elit.')
+                                            default='Lorem ipsum Lorem ipsum dolor sit amet consectetur adipisicing elit.')
 
     accompany2 = models.CharField(verbose_name='第二', default='分析学情', max_length=100)
     accompany2_img = models.ImageField(verbose_name='图片', upload_to='read_life')
     accompany2_int = RichTextUploadingField(verbose_name='介绍',
-                                      default='Lorem ipsum Lorem ipsum dolor sit amet consectetur adipisicing elit.')
+                                            default='Lorem ipsum Lorem ipsum dolor sit amet consectetur adipisicing elit.')
 
     accompany3 = models.CharField(verbose_name='第三', default='分配老师', max_length=100)
     accompany3_img = models.ImageField(verbose_name='图片', upload_to='read_life')
     accompany3_int = RichTextUploadingField(verbose_name='介绍',
-                                      default='Lorem ipsum Lorem ipsum dolor sit amet consectetur adipisicing elit.')
+                                            default='Lorem ipsum Lorem ipsum dolor sit amet consectetur adipisicing elit.')
 
     accompany4 = models.CharField(verbose_name='第四', default='定制计划', max_length=100)
     accompany4_img = models.ImageField(verbose_name='图片', upload_to='read_life')
     accompany4_int = RichTextUploadingField(verbose_name='介绍',
-                                      default='Lorem ipsum Lorem ipsum dolor sit amet consectetur adipisicing elit.')
+                                            default='Lorem ipsum Lorem ipsum dolor sit amet consectetur adipisicing elit.')
 
     accompany5 = models.CharField(verbose_name='第五', default='建立档案', max_length=100)
     accompany5_img = models.ImageField(verbose_name='图片', upload_to='read_life')
     accompany5_int = RichTextUploadingField(verbose_name='介绍',
-                                      default='Lorem ipsum Lorem ipsum dolor sit amet consectetur adipisicing elit.')
+                                            default='Lorem ipsum Lorem ipsum dolor sit amet consectetur adipisicing elit.')
 
     accompany6 = models.CharField(verbose_name='第六', default='学习报告', max_length=100)
     accompany6_img = models.ImageField(verbose_name='图片', upload_to='read_life')
     accompany6_int = RichTextUploadingField(verbose_name='介绍',
-                                      default='Lorem ipsum Lorem ipsum dolor sit amet consectetur adipisicing elit.')
+                                            default='Lorem ipsum Lorem ipsum dolor sit amet consectetur adipisicing elit.')
 
     class Meta:
         verbose_name = '1首页-6陪伴式教育'
@@ -238,19 +243,21 @@ class Bt_Nav(models.Model):
 class About(models.Model):
     title1 = models.CharField(verbose_name='学校简介', default='学校简介', max_length=100)
     s_title1 = models.CharField(verbose_name='英文标题', default='SCHOOL SITUATION', max_length=100)
-    img = models.ImageField(verbose_name='学校简介照片', upload_to='about',blank=True)
+    img = models.ImageField(verbose_name='学校简介照片', upload_to='about', blank=True)
     sltuation = RichTextUploadingField('学校简介')
 
     # 校长致辞
     title2 = models.CharField(verbose_name='校长致辞', default='校长致辞', max_length=100)
     s_title2 = models.CharField(verbose_name='英文标题', default='MESSAGE PRESIDENT', max_length=100)
     president1 = RichTextUploadingField(verbose_name='校长致辞-左边', default='')
-    preimg1 = models.ImageField(verbose_name='左边图片', upload_to='about',blank=True)
+    preimg1 = models.ImageField(verbose_name='左边图片', upload_to='about', blank=True)
     time1 = models.CharField(verbose_name='左边编辑时间', default='2020年5月1日', max_length=100)
+    signature1 = models.ImageField(verbose_name='签名1', upload_to='about', blank=True)
 
     president2 = RichTextUploadingField(verbose_name='校长致辞-右边', default='')
-    preimg2 = models.ImageField(verbose_name='右边图片', upload_to='about',blank=True)
+    preimg2 = models.ImageField(verbose_name='右边图片', upload_to='about', blank=True)
     time2 = models.CharField(verbose_name='右边编辑时间', default='2020年5月1日', max_length=100)
+    signature2 = models.ImageField(verbose_name='签名2', upload_to='about', blank=True)
 
     class Meta:
         verbose_name = '2关于南西-1简介致辞'
@@ -444,25 +451,28 @@ class Choose_Nancy(models.Model):
     title = models.CharField(verbose_name='标题', default='选择南西', max_length=20)
     s_title = models.CharField(verbose_name='小标题', default='CHOOSE NANCY', max_length=100)
     first1 = models.CharField(verbose_name='第一', default='强大的教学实力', max_length=100)
-    first2 = RichTextUploadingField(verbose_name='第一介绍', default='南西教育作为K12升学辅导培训的资深品牌， 有数年的教育培训和应试辅导经验， 已有数万名学子升入理想学校的成功见证。',
-                              )
+    first2 = RichTextUploadingField(verbose_name='第一介绍',
+                                    default='南西教育作为K12升学辅导培训的资深品牌， 有数年的教育培训和应试辅导经验， 已有数万名学子升入理想学校的成功见证。',
+                                    )
 
     second1 = models.CharField(verbose_name='第二', default='丰富的教研活动', max_length=100)
     second2 = RichTextUploadingField(verbose_name='第二介绍',
-                               default='每周进行学科教研活动，形成完整的教学设计方案，每月集中分析学生学习情况， 教研针对性辅导方案，每季度举行教师赛课，激励教师不断的提高教学质量。',
-                               )
+                                     default='每周进行学科教研活动，形成完整的教学设计方案，每月集中分析学生学习情况， 教研针对性辅导方案，每季度举行教师赛课，激励教师不断的提高教学质量。',
+                                     )
 
     third1 = models.CharField(verbose_name='第三', default='优质的师训系统', max_length=100)
-    third2 = RichTextUploadingField(verbose_name='第三介绍', default='学校总部拥有完整的教师培训体系，新教师侧重教学技能的扎实 ，中级教师侧重教学方式的创新，高级教师侧重教研学术的研究。',
-                             )
+    third2 = RichTextUploadingField(verbose_name='第三介绍',
+                                    default='学校总部拥有完整的教师培训体系，新教师侧重教学技能的扎实 ，中级教师侧重教学方式的创新，高级教师侧重教研学术的研究。',
+                                    )
 
     fourth1 = models.CharField(verbose_name='第四', default='自主研发的多层次教材', max_length=100)
     fourth2 = RichTextUploadingField(verbose_name='第四介绍',
-                               default='教材由教研部数位经验丰富的教研大牛自主研发而成， 根据不同层次的学生学情，研发不同层次的教材，教学层次分明，实用性强')
+                                     default='教材由教研部数位经验丰富的教研大牛自主研发而成， 根据不同层次的学生学情，研发不同层次的教材，教学层次分明，实用性强')
 
     fifth1 = models.CharField(verbose_name='第五', default='强大的教学实力', max_length=100)
-    fifth2 = RichTextUploadingField(verbose_name='第五介绍', default='南西教育作为K12升学辅导培训的资深品牌，有数年的教育培训和应试辅导经验 已有数万名靴子升入理想学校的成功见证。',
-                              )
+    fifth2 = RichTextUploadingField(verbose_name='第五介绍',
+                                    default='南西教育作为K12升学辅导培训的资深品牌，有数年的教育培训和应试辅导经验 已有数万名靴子升入理想学校的成功见证。',
+                                    )
 
     class Meta:
         verbose_name = '4教学体系-1选择南西'
@@ -519,8 +529,10 @@ class Teach_Bt(models.Model):
 
 """最新动态"""
 
+
 class Tag(models.Model):
-    title = models.CharField(verbose_name='关键字',max_length=20)
+    title = models.CharField(verbose_name='关键字', max_length=20)
+
     class Meta:
         verbose_name = '5最新动态-1添加关键字'
         verbose_name_plural = verbose_name
@@ -530,11 +542,11 @@ class Tag(models.Model):
 
 
 class Dynamic(models.Model):
-    articles = models.ForeignKey(Tag,on_delete=models.DO_NOTHING,verbose_name='关键字',null=True)
+    articles = models.ForeignKey(Tag, on_delete=models.DO_NOTHING, verbose_name='关键字', null=True)
     title = models.CharField(verbose_name='新闻标题', max_length=50)
     category_choices = (('hd', '活动'), ('zx', '教育咨询'))
     category = models.CharField(verbose_name='新闻类别', choices=category_choices, default='hd', max_length=20)
-    img = models.ImageField(verbose_name='新闻图片',upload_to='news',blank=True)
+    img = models.ImageField(verbose_name='新闻图片', upload_to='news', blank=True)
     add_time = models.DateTimeField(verbose_name='发布时间', default=datetime.now)
     content = RichTextUploadingField('新闻内容')
 
@@ -553,6 +565,7 @@ class Dynamic_Bt(models.Model):
     class Meta:
         verbose_name = '5最新动态-3底部'
         verbose_name_plural = verbose_name
+
 
 """小南编程"""
 
@@ -590,13 +603,13 @@ class Why_Choose(models.Model):
     why2_img = models.ImageField(verbose_name='图片', upload_to='programming')
     why2_int = RichTextUploadingField(verbose_name='介绍', default='这是')
 
-    why3 = models.CharField(verbose_name='第三', default='小南编程三大优势', max_length=100,blank=True)
-    why3_img = models.ImageField(verbose_name='图片', upload_to='programming',blank=True)
-    why3_int = RichTextUploadingField(verbose_name='介绍', default='这是',blank=True)
+    why3 = models.CharField(verbose_name='第三', default='小南编程三大优势', max_length=100, blank=True)
+    why3_img = models.ImageField(verbose_name='图片', upload_to='programming', blank=True)
+    why3_int = RichTextUploadingField(verbose_name='介绍', default='这是', blank=True)
 
-    why4 = models.CharField(verbose_name='第四', default='CSTA课程设计指标', max_length=100,blank=True)
-    why4_img = models.ImageField(verbose_name='图片', upload_to='programming',blank=True)
-    why4_int = RichTextUploadingField(verbose_name='介绍', default='这是',blank=True)
+    why4 = models.CharField(verbose_name='第四', default='CSTA课程设计指标', max_length=100, blank=True)
+    why4_img = models.ImageField(verbose_name='图片', upload_to='programming', blank=True)
+    why4_int = RichTextUploadingField(verbose_name='介绍', default='这是', blank=True)
 
     class Meta:
         verbose_name = '6小南编程-2为什么选择小南编程'
@@ -609,8 +622,8 @@ class First_Class(models.Model):
     s_title1 = models.CharField(verbose_name='英文标题', default='FIRST CLASS TEACHING AND RESEARCH', max_length=100)
     s_title2 = models.CharField(verbose_name='小标题', default='打造专属于中国孩子的编程课', max_length=100)
     inner = RichTextUploadingField(verbose_name='简介',
-                             default='基于“PIE”理念（项目教学/激发兴趣/鼓励探索） 进行编程教学大纲开发设计，倡导通过项目实战的方式，去激发学生的兴趣， 进一步提高学习的自我驱动力，获取新知识',
-                             )
+                                   default='基于“PIE”理念（项目教学/激发兴趣/鼓励探索） 进行编程教学大纲开发设计，倡导通过项目实战的方式，去激发学生的兴趣， 进一步提高学习的自我驱动力，获取新知识',
+                                   )
 
     class1 = models.CharField(verbose_name='姓名', default='XXX', max_length=100)
     class1_img = models.ImageField(verbose_name='图片', upload_to='programming')
@@ -652,18 +665,18 @@ class Class_Teach(models.Model):
     inner2 = RichTextUploadingField(verbose_name='简介',
                                     default='知识：理解计算机编程的基本概念，设计有趣的游戏和动画作品， 分析分解项目，完成从无到有的创作，规划研究管理小型项目。 能力:建立逻辑思维，树立解决问题意识，增加对学习的兴趣和信心，掌握编程基础知识')
 
-    course_title3 = models.CharField(verbose_name='课程标题三', default='C++编程课', max_length=100,blank=True)
-    course3_img = models.ImageField(verbose_name='图片', upload_to='programming',blank=True)
-    course3 = models.CharField(verbose_name='小标题', default='零基础入门首选让编程像搭积木一样好', max_length=100,blank=True)
-    age3 = models.CharField(verbose_name='年龄段', default='6-8岁', max_length=20,blank=True)
-    inner3 = RichTextUploadingField(verbose_name='简介',blank=True,
+    course_title3 = models.CharField(verbose_name='课程标题三', default='C++编程课', max_length=100, blank=True)
+    course3_img = models.ImageField(verbose_name='图片', upload_to='programming', blank=True)
+    course3 = models.CharField(verbose_name='小标题', default='零基础入门首选让编程像搭积木一样好', max_length=100, blank=True)
+    age3 = models.CharField(verbose_name='年龄段', default='6-8岁', max_length=20, blank=True)
+    inner3 = RichTextUploadingField(verbose_name='简介', blank=True,
                                     default='知识：理解计算机编程的基本概念，设计有趣的游戏和动画作品， 分析分解项目，完成从无到有的创作，规划研究管理小型项目。 能力:建立逻辑思维，树立解决问题意识，增加对学习的兴趣和信心，掌握编程基础知识')
 
-    course_title4 = models.CharField(verbose_name='课程标题四', default='竞赛培训', max_length=100,blank=True)
-    course4_img = models.ImageField(verbose_name='图片', upload_to='programming',blank=True)
-    course4 = models.CharField(verbose_name='小标题', default='零基础入门首选让编程像搭积木一样好', max_length=100,blank=True)
-    age4 = models.CharField(verbose_name='年龄段', default='6-8岁', max_length=20,blank=True)
-    inner4 = RichTextUploadingField(verbose_name='简介',blank=True,
+    course_title4 = models.CharField(verbose_name='课程标题四', default='竞赛培训', max_length=100, blank=True)
+    course4_img = models.ImageField(verbose_name='图片', upload_to='programming', blank=True)
+    course4 = models.CharField(verbose_name='小标题', default='零基础入门首选让编程像搭积木一样好', max_length=100, blank=True)
+    age4 = models.CharField(verbose_name='年龄段', default='6-8岁', max_length=20, blank=True)
+    inner4 = RichTextUploadingField(verbose_name='简介', blank=True,
                                     default='知识：理解计算机编程的基本概念，设计有趣的游戏和动画作品， 分析分解项目，完成从无到有的创作，规划研究管理小型项目。 能力:建立逻辑思维，树立解决问题意识，增加对学习的兴趣和信心，掌握编程基础知识')
 
     class Meta:
@@ -681,17 +694,17 @@ class First_Match(models.Model):
     carousel = models.ImageField(verbose_name='第几组', choices=category_choices, default='first',
                                  upload_to='programming')
 
-    match_title1 = models.CharField(verbose_name='比赛标题一', default='全国青少年创意编程与智能设计大赛', max_length=100,blank=True)
-    match1 = models.CharField(verbose_name='小标题', default='SCRATCH', max_length=100,blank=True)
-    inner1 = RichTextUploadingField(verbose_name='简介',blank=True,
+    match_title1 = models.CharField(verbose_name='比赛标题一', default='全国青少年创意编程与智能设计大赛', max_length=100, blank=True)
+    match1 = models.CharField(verbose_name='小标题', default='SCRATCH', max_length=100, blank=True)
+    inner1 = RichTextUploadingField(verbose_name='简介', blank=True,
                                     default='知识：理解计算机编程的基本概念，设计有趣的游戏和动画作品， 分析分解项目，完成从无到有的创作，规划研究管理小型项目。 能力:建立逻辑思维，树立解决问题意识，增加对学习的兴趣和信心，掌握编程基础知识')
-    match2 = models.CharField(verbose_name='小标题', default='PYTHON', max_length=100,blank=True)
-    inner2 = RichTextUploadingField(verbose_name='简介',blank=True,
+    match2 = models.CharField(verbose_name='小标题', default='PYTHON', max_length=100, blank=True)
+    inner2 = RichTextUploadingField(verbose_name='简介', blank=True,
                                     default='知识：理解计算机编程的基本概念，设计有趣的游戏和动画作品， 分析分解项目，完成从无到有的创作，规划研究管理小型项目。 能力:建立逻辑思维，树立解决问题意识，增加对学习的兴趣和信心，掌握编程基础知识')
 
-    match1_img = models.ImageField(verbose_name='图片', upload_to='programming',blank=True)
-    match2_img = models.ImageField(verbose_name='图片', upload_to='programming',blank=True)
-    match3_img = models.ImageField(verbose_name='图片', upload_to='programming',blank=True)
+    match1_img = models.ImageField(verbose_name='图片', upload_to='programming', blank=True)
+    match2_img = models.ImageField(verbose_name='图片', upload_to='programming', blank=True)
+    match3_img = models.ImageField(verbose_name='图片', upload_to='programming', blank=True)
 
     class Meta:
         verbose_name = '6小南编程-5精选国内顶尖赛事'
@@ -727,6 +740,7 @@ class Contact(models.Model):
     class Meta:
         verbose_name = '7联系我们-1'
         verbose_name_plural = verbose_name
+
 
 class Contact_Bt(models.Model):
     title = models.CharField(verbose_name='标题', default='学校简介', max_length=100)

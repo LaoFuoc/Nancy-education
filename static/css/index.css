@@ -237,9 +237,11 @@ a {
 }
 
 .sixPartItem img {
-    width: 160px;
-    height: 160px;
-    border-radius: 50%;
+    /*width: 160px;*/
+    /*height: 160px;*/
+    width: 240px;
+    height: 200px;
+    /*border-radius: 50%;*/
 }
 
 .contactUs {
@@ -274,6 +276,7 @@ a {
     width: 1200px;
     height: 400px;
     margin: auto;
+    font-size: 20px;
 }
 
 .nacyTea {
@@ -631,6 +634,7 @@ a {
     height: 100PX;
     max-width: 100PX;
     position: absolute;
+    line-height: 55px;
     z-index: 993;
     text-emphasis: none;
     left: 5%;
@@ -649,7 +653,9 @@ a {
 
 @media screen and (max-width: 1200px) and (min-width: 1024px) {
     .stepCon {
-        left: 3%
+        left: 3%;
+        line-height: 70px;
+        margin-left: 10px;
     }
 
     .stepCon:nth-child(1) {
@@ -677,39 +683,11 @@ a {
     }
 }
 
-@media screen and (max-width: 1024px) {
-    .stepCon {
-        left: 4.2%;
-        top: 48px;
-        font-size: 12px;
-    }
-
-    .stepCon:nth-child(2) {
-        left: 21%
-    }
-
-    .stepCon:nth-child(3) {
-        left: 37.5%
-    }
-
-    .stepCon:nth-child(4) {
-        left: 54.1%
-    }
-
-    .stepCon:nth-child(5) {
-        left: 70.9%
-    }
-
-    .stepCon:nth-child(6) {
-        left: 87.6%
-    }
-}
-
-
 @media screen and (min-width: 1200px) {
     .stepCon {
         left: 4%;
-        top: 70px
+        top: 70px;
+        margin-left: 5px;
     }
 
     .stepCon:nth-child(2) {
@@ -730,34 +708,6 @@ a {
 
     .stepCon:nth-child(6) {
         left: 87.3%
-    }
-}
-
-
-@media screen and (min-width: 1600px) {
-    .stepCon {
-        left: 4%;
-        top: 80px
-    }
-
-    .stepCon:nth-child(2) {
-        left: 21.1%
-    }
-
-    .stepCon:nth-child(3) {
-        left: 37.5%
-    }
-
-    .stepCon:nth-child(4) {
-        left: 54.5%
-    }
-
-    .stepCon:nth-child(5) {
-        left: 71.2%
-    }
-
-    .stepCon:nth-child(6) {
-        left: 88%
     }
 }
 

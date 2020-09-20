@@ -1,0 +1,6 @@
+index.css文件
+989行：height改为60%，
+385行：height改为400px
+
+dynamic.html文件
+contents中加入text-align:center
