@@ -208,7 +208,7 @@ class Admin7(admin.ModelAdmin):
 
 
 class GuangGaoAdmin(admin.ModelAdmin):
-    list_display_links = list_display = ['id','img1', 'advertising_img1', 'img2', 'advertising_img2']
+    list_display_links = list_display = ['zxdt_img', 'id', 'img1', 'advertising_img1', 'img2', 'advertising_img2']
 
 
 # 首页

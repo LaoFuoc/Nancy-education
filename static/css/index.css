@@ -1,5 +1,5 @@
 #container {
-    min-width: 1400px;
+    /*min-width: 1400px;*/
     /*width:expression(document.body.clientWidth < 1400? "1400px": "auto" );*/
 }
 

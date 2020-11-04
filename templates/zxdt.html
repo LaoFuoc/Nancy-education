@@ -80,7 +80,7 @@
                         <li><a href="{% url 'zxdt' %}?tag={{ tag.title }}#jump">{{ tag.title }}</a></li>
                     {% endfor %}
                 </ul>
-                <img class="hots-img" src="{% static 'images/3.png' %}" alt>
+                <img class="hots-img" src="{{ MEDIA_URL }}{{ guanggao.zxdt_img }}" alt>
             </div>
         </div>
     </div>

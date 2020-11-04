@@ -32,15 +32,14 @@
             </div>
         </div>
     </div>
-{% for g in guanggao %}
     <div class="contactUs">
-            <img src="{{ MEDIA_URL }}{{ g.img1 }}" alt/>
-            <div class="conUs" onclick="showTip()">立即咨询</div>
+        <img src="{{ MEDIA_URL }}{{ guanggao.img1 }}" alt/>
+        <div class="conUs" onclick="showTip()">立即咨询</div>
     </div>
     <div class="mask" v-if="showMask">
         <div class="poupCon fr_r_b">
             <img src="{% static 'images/closeIT.png' %}" alt="" class="closeIT" onclick="closeTip()">
-            <img src="{{ MEDIA_URL }}{{ g.advertising_img1 }}" alt="" class="tipLeft">
+            <img src="{{ MEDIA_URL }}{{ guanggao.advertising_img1 }}" alt="" class="tipLeft">
             <form class="formGroupX  fr_c_c" id="myform">
                 <div style="margin-bottom:20px; width:80%">
                     <div style="margin-bottom:10px">学生姓名：</div>
@@ -62,7 +61,6 @@
             </form>
         </div>
     </div>
-    {% endfor %}
 
     <div class="choseTiTle fr_c_c" style="margin-top:20px;">
         {% for six_teach in six_teachs %}

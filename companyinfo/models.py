@@ -46,10 +46,12 @@ class GuangGao(models.Model):
     advertising_img1 = models.ImageField(verbose_name='点击咨询-背景图片', upload_to='advertising', blank=True, null=True)
     img2 = models.ImageField(verbose_name="小南编程-广告栏图片", upload_to='choose_teach', blank=True, null=True)
     advertising_img2 = models.ImageField(verbose_name='立即领取-背景图片', upload_to='advertising', blank=True, null=True)
+    zxdt_img = models.ImageField(verbose_name='最新动态右边广告', upload_to='advertising', blank=True, null=True)
 
     class Meta:
         verbose_name = "广告栏图片-背景设置(立即咨询+点击领取)"
         verbose_name_plural = verbose_name
+
 
 # 立即咨询
 class Advertising1(models.Model):
@@ -222,14 +224,16 @@ class Bt_Nav(models.Model):
     address = models.CharField(verbose_name='详细地址', default='保利时代广场B栋12楼（杨家坪步行街正西50米）', max_length=50)
     phone = models.CharField(verbose_name='电话号码', default='杨家坪校区', max_length=20)
 
-    record1 = models.CharField(verbose_name='备案号1', default='渝IC P备00000000号00', max_length=100)
-    url1 = models.CharField(verbose_name='备案号1链接', default='#', max_length=100)
-    record2 = models.CharField(verbose_name='备案号2', default='渝公网安备00000000000000号', max_length=100)
-    url2 = models.CharField(verbose_name='备案号2链接', default='#', max_length=100)
+    record1 = models.CharField(verbose_name='备案号1', default='渝IC P备00000000号00', max_length=100, blank=True, null=True)
+    url1 = models.CharField(verbose_name='备案号1链接', default='#', max_length=100, blank=True, null=True)
+    record2 = models.CharField(verbose_name='备案号2', default='渝公网安备00000000000000号', max_length=100, blank=True,
+                               null=True)
+    url2 = models.CharField(verbose_name='备案号2链接', default='#', max_length=100, blank=True, null=True)
     imprimatur = models.CharField(verbose_name='经营许可', default='出版物经营许可证新出发渝零字第V000号', max_length=100)
     License = models.CharField(verbose_name='营业执照', default='营业执照00000000MA05JPR99 J', max_length=100)
-    other = models.CharField(verbose_name='备案号2', default='Copysdfght◎2020 AII rights sdfsdfs', max_length=100)
-    qrcode = models.ImageField(verbose_name='二维码', upload_to='advertising')
+    other = models.CharField(verbose_name='备案号2', default='Copysdfght◎2020 AII rights sdfsdfs', max_length=100,
+                             blank=True, null=True)
+    qrcode = models.ImageField(verbose_name='二维码', upload_to='advertising',blank=True,null=True)
 
     class Meta:
         verbose_name = '1首页-7底部导航栏'

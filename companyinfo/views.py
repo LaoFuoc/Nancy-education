@@ -23,7 +23,7 @@ class IndexView(View):
         choose2 = Choose_us.objects.filter(choose='second')
         choose3 = Choose_us.objects.filter(choose='third')
         tea_advs = Teacher_select.objects.all()
-        guanggao = GuangGao.objects.all()
+        guanggao = GuangGao.objects.first()
         six_teachs = Six_Teach.objects.all()
         teacher1 = Nancy_Teacher.objects.filter(carousel='first')
         teacher2 = Nancy_Teacher.objects.filter(carousel='second')
@@ -187,7 +187,7 @@ class ProgramingView(View):
         try:
             carousels = Top_Carousel.objects.all()
             programmings = Programming.objects.all()
-            guanggao = GuangGao.objects.all()
+            guanggao = GuangGao.objects.first()
             why_chooses = Why_Choose.objects.all()
             tea_advs = Teacher_select.objects.all()
             first_class = First_Class.objects.all()
@@ -251,7 +251,7 @@ class DynamicView(View):
             else:
                 category = 'hd'
                 all_news = Dynamic.objects.filter(category=category).order_by('-add_time')
-
+            guanggao = GuangGao.objects.first()
             tags = Tag.objects.all()  # 所有的标签
             # 获取关键字
             tag = request.GET.get('tag')
@@ -276,6 +276,7 @@ class DynamicView(View):
                 'carousels': carousels,
                 'dynamics': dynamics,
                 'category': category,
+                'guanggao':guanggao,
                 'tags': tags,
                 'articles': articles,
                 'all_news': all_news,
