@@ -572,3 +572,58 @@ a {
     margin-inline-end: 0;
 }
 
+
+@media screen and (max-width: 1024px) {
+    #container {
+        min-width: 1000px;
+        overflow-x: hidden;
+    }
+
+    .row_course {
+        width: 1000px;
+    }
+
+    .content {
+        width: 1000px;
+        margin: 0;
+        padding: 0;
+
+    }
+
+    .con {
+        width: 180px;
+        margin-right: 5px;
+    }
+
+    .custom-gc {
+        width: 1000px;
+    }
+
+    .custom-top {
+        width: 800px;
+    }
+
+    .custom-button {
+        width: 800px;
+    }
+
+    .interest {
+        width: 1000px;
+    }
+
+    .row_interest {
+        width: 1000px;
+    }
+
+    .threFaths {
+        width: 1000px;
+        padding: 0;
+
+    }
+
+    #threeFather .swiper-slide {
+        width: 315px !important;
+    }
+
+
+}

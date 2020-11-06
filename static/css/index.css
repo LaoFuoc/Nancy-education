@@ -1,5 +1,5 @@
 #container {
-    /*min-width: 1400px;*/
+    min-width: 1400px;
     /*width:expression(document.body.clientWidth < 1400? "1400px": "auto" );*/
 }
 
@@ -788,12 +788,65 @@ margin: 0 auto;
     }
 }
 
+/* 适配移动端分辨率 */
 @media screen and (max-width: 1024px) {
+    #container {
+        min-width: 1000px;
+        overflow-x: hidden;
+    }
+
     .banXin {
         width: 960px;
         margin: 0 auto;
         position: relative;
     }
+
+    .sixStep {
+        width: 800px;
+    }
+
+    .stepCon {
+        left: 4%;
+        margin-left: 5px;
+        top: 40px;
+        text-align: left;
+    }
+
+    .stepCon:nth-child(2) {
+        left: 20.7%
+    }
+
+    .stepCon:nth-child(3) {
+        left: 37.3%
+    }
+
+    .stepCon:nth-child(4) {
+        left: 54.3%
+    }
+
+    .stepCon:nth-child(5) {
+        left: 70.7%
+    }
+
+    .stepCon:nth-child(6) {
+        left: 87.3%
+    }
+
+    .threFath {
+        width: 1000px;
+        overflow: hidden;
+        margin: auto;
+        padding: 0;
+    }
+
+    #threeFather .swiper-slide {
+        width: 303px !important;
+    }
+
+    .navRight {
+        margin-right: 0;
+    }
+
 }
 
 @media screen and (min-width: 1200px) {
@@ -804,6 +857,13 @@ margin: 0 auto;
     }
 }
 
+@media screen and (min-width: 767px) {
+    .banXin {
+        width: 1000px;
+        margin: 0 auto;
+        position: relative;
+    }
+}
 
 .swiper-container {
     width: 100%;
